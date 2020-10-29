@@ -1,0 +1,12 @@
+{
+  "name": "On-Demand-Car-Servicing-App",
+  "displayName": "On-Demand-Car-Servicing-App",
+  "expo": {
+    "name": "On-Demand-Car-Servicing-App",
+    "slug": "On-Demand-Car-Servicing-App",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
