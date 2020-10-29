@@ -30,7 +30,11 @@ You can clone this repository by following steps below:
   git clone https://github.com/Five-Fishes/On-Demand-Car-Servicing-App.git
   ```
   - The repository should now be in your ```projects``` folder.
-- Then, you should install all dependencies
+- Then, you should install all dependencies. Before that, you should open up your project with desired IDE (I am using visual studio code, if you are too, do as below in cmd/zsh)
+```
+code "folder path to the cloned folder"
+```
+- When Visual Studio Code is launched, open up new terminal (shortcut: ctrl + `) and do:
 ```
 yarn
 ```
