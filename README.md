@@ -43,6 +43,17 @@ yarn
 ## Debugging
 
 To debug your app:
+- Start backend server on PORT 3000
+- In App.js, replace the IP here with the IP of your PC ( Make sure Phone and PC are on the same wifi )
+```javascript
+  useEffect(() => {
+    fetch('http://192.168.1.51:3000/')//use your own pc ip address
+      .then((response) => response.json())
+      .then((json) => setData(json))
+      .catch((error) => console.error(error))
+      .finally(() => setLoading(false));
+  }, []);
+```
 - In your terminal:
 ```
 expo start
