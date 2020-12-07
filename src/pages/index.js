@@ -1,3 +1,5 @@
-import Home from './Home';
+import Home from "./Home";
+import SignUp from "./SignUp";
 
-export { Home as Screen };
+export { Home as HomeScreen };
+export { SignUp as SignUpScreen };
