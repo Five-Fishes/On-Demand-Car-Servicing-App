@@ -1,11 +1,22 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { Text, TouchableOpacity } from "react-native";
+import { Background } from "../components/shared";
 
 const SignUp = () => {
   return (
-    <View>
-      <Text>SignUp page</Text>
-    </View>
+    <Background>
+      <TouchableOpacity
+        onPress={() => alert("Not Implemented!")}
+        style={{
+          backgroundColor: "white",
+          padding: 5,
+          borderRadius: 5,
+          margin: 5,
+        }}
+      >
+        <Text style={{ fontSize: 20, color: "black" }}>Click Me</Text>
+      </TouchableOpacity>
+    </Background>
   );
 };
 

@@ -1,34 +1,23 @@
 import * as React from "react";
-import { Button, View, Text } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { Text, TouchableOpacity } from "react-native";
+import { Background } from "../components/shared";
 
 const Home = ({ navigation }) => {
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#8872AD",
-      }}
-    >
-      <LinearGradient
-        colors={["#1C4687", "transparent"]}
-        style={{
-          position: "absolute",
-          left: 0,
-          right: 0,
-          top: 0,
-          height: "100%",
-        }}
-      />
-      <Text>Home Screen</Text>
-      <Button
-        title="next page"
-        backgroundColor="#ffffff"
+    <Background>
+      <Text style={{ color: "white" }}>Home Screen</Text>
+      <TouchableOpacity
         onPress={() => navigation.navigate("SignUp")}
-      />
-    </View>
+        style={{
+          backgroundColor: "white",
+          padding: 5,
+          borderRadius: 5,
+          margin: 5,
+        }}
+      >
+        <Text style={{ fontSize: 20, color: "black" }}>Sign Up</Text>
+      </TouchableOpacity>
+    </Background>
   );
 };
 
