@@ -4,7 +4,7 @@ import SignInStyle from "./SignInStyle";
 import Background from "../../components/shared/PageBackground";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
-const SignIn = () => {
+const SignIn = ({ navigation }) => {
   return (
     <Background>
       <View style={SignInStyle.container}>
@@ -36,7 +36,7 @@ const SignIn = () => {
 
           <TouchableOpacity
             onPress={() => {
-              Alert.alert("Login Pressed");
+              navigation.navigate("Home");
             }}
             style={{
               marginVertical: 50,
@@ -57,7 +57,7 @@ const SignIn = () => {
           </Text>
           <Text
             style={{ alignSelf: "center" }}
-            onPress={() => Alert.alert("Register Here Pressed")}
+            onPress={() => navigation.navigate("SignUp")}
           >
             Register Here
           </Text>
