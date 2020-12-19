@@ -1,8 +1,7 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { HomeScreen, SignUpScreen, ProfileScreen } from "./pages";
-import SignInScreen from "./pages/SignIn/SignIn";
+import { HomeScreen, SignUpScreen, ProfileScreen, SignInScreen } from "./pages";
 
 const Stack = createStackNavigator();
 
@@ -41,7 +40,7 @@ const App = () => {
         <Stack.Screen
           name="Profile"
           component={ProfileScreen}
-          options={{title: "Profile"}}
+          options={{ title: "Profile" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
