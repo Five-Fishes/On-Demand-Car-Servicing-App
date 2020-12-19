@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Text, TouchableOpacity } from "react-native";
-import { Background } from "../components/shared";
+import { Background } from "../../components/shared";
 
 const Home = ({ navigation }) => {
   return (
