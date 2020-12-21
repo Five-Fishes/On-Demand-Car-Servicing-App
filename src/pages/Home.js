@@ -17,6 +17,19 @@ const Home = ({ navigation }) => {
       >
         <Text style={{ fontSize: 20, color: "black" }}>Sign Up</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("AppointmentListPage")}
+        style={{
+          backgroundColor: "white",
+          padding: 5,
+          borderRadius: 5,
+          margin: 5,
+        }}
+      >
+        <Text style={{ fontSize: 20, color: "black" }}>Appointment</Text>
+      </TouchableOpacity>
+
     </Background>
   );
 };

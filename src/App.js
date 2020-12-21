@@ -1,14 +1,14 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { HomeScreen, SignUpScreen } from "./pages";
+
+import { HomeScreen, SignUpScreen, AppointmentListScreen } from "./pages";
 import SignInScreen from "./pages/SignIn/SignIn";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    // abc
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -38,6 +38,11 @@ const App = () => {
           name="Home"
           component={HomeScreen}
           options={{ title: "Home" }}
+        />
+        <Stack.Screen
+          name="AppointmentListPage"
+          component={AppointmentListScreen}
+          options={{ title: "AppointmentListPage" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
