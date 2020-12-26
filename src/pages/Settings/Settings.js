@@ -40,6 +40,7 @@ const Settings = ({navigation}) => {
               style={SettingsStyle.itemList}
               onPress={() => {
                 Alert.alert("Clicked on "+item.Name)
+                // TODO: navigate to repective page
                 // navigation.navigate(item.Navigate)
               }}
             >

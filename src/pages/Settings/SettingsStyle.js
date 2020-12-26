@@ -3,20 +3,21 @@ import {StyleSheet} from 'react-native';
 export default SettingsStyle = StyleSheet.create({
   container: {
     flex: 1,
-    width: "100%",
+    width: "98%",
     position: "absolute",
-    top: 50,
+    top: 75,
   },
 
   listView: {
-    borderRadius: 20,
+    borderRadius: 40,
   },
 
   itemList: {
     borderBottomColor: "grey",
     borderBottomWidth: 1,
-    fontSize: 25,
+    fontSize: 24,
     backgroundColor: "white",
-    padding: 15,
+    padding: 20,
+    margin: "auto"
   }
 })

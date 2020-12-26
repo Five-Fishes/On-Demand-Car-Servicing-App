@@ -37,7 +37,7 @@ const Home = ({ navigation }) => {
           margin: 5,
         }}
       >
-        <Text style={{ fontSize: 20, color: "black" }}>Settings</Text>
+        <Text style={{ fontSize: 20, color: "black" }}>Setting</Text>
       </TouchableOpacity>
     </Background>
   );
