@@ -1,5 +1,6 @@
 import Home from "./Home";
 import SignUp from "./SignUp";
+import SignIn from "./SignIn";
 import AppointmentListPage from "./AppointmentListPage";
 
 import Profile from "./Profile";
