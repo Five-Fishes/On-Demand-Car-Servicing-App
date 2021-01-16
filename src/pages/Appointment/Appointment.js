@@ -3,12 +3,12 @@ import { View, Text, ScrollView} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Background from "../../components/shared/PageBackground";
 import AppointmentList from "./AppointmentList";
-import AppointmentListStyle from "./AppointmentListStyle";
+import AppointmentStyle from "./AppointmentStyle";
 
-const AppointmentListPage = ({navigation}) => {  
+const Appointment = ({navigation}) => {  
   return (
       <Background>
-        <View style = {AppointmentListStyle.toolbar}>
+        <View style = {AppointmentStyle.toolbar}>
         <Text style ={{
             color:"#FFFFFF",
             alignSelf: "center",  
@@ -23,7 +23,7 @@ const AppointmentListPage = ({navigation}) => {
         </Text>
         </View>
 
-        <View style = {AppointmentListStyle.container}>
+        <View style = {AppointmentStyle.container}>
           <TouchableOpacity 
             style = {{              
                 position: "absolute",
@@ -102,7 +102,7 @@ const AppointmentListPage = ({navigation}) => {
             </Text>
           </TouchableOpacity>
 
-          <ScrollView style = {AppointmentListStyle.linearlayout}>
+          <ScrollView style = {AppointmentStyle.linearlayout}>
             <AppointmentList/>
           </ScrollView>
 
@@ -110,4 +110,4 @@ const AppointmentListPage = ({navigation}) => {
       </Background>
     );
 };
-export default AppointmentListPage;
+export default Appointment;

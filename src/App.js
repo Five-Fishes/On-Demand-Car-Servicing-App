@@ -2,7 +2,8 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { HomeScreen, SignUpScreen, ProfileScreen, SignInScreen, SettingsScreen,AppointmentListScreen } from "./pages";
+import { HomeScreen, SignUpScreen, ProfileScreen, SignInScreen, SettingsScreen,
+  AppointmentScreen, FavouriteScreen } from "./pages";
 
 const Stack = createStackNavigator();
 
@@ -39,9 +40,9 @@ const App = () => {
           options={{ title: "Home" }}
         />
         <Stack.Screen
-          name="AppointmentListPage"
-          component={AppointmentListScreen}
-          options={{ title: "AppointmentListPage" }}
+          name="Appointment"
+          component={AppointmentScreen}
+          options={{ title: "Appointment" }}
           />
         <Stack.Screen  
           name="Profile"
@@ -52,6 +53,12 @@ const App = () => {
           name="Settings"
           component={SettingsScreen}
           options={{ title: "Setting" }}
+        />
+
+        <Stack.Screen
+          name="Favourite"
+          component={FavouriteScreen}
+          options={{ title: "Favourite" }}
         />
       </Stack.Navigator>
     </NavigationContainer>

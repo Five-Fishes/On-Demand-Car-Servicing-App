@@ -39,6 +39,31 @@ const Home = ({ navigation }) => {
       >
         <Text style={{ fontSize: 20, color: "black" }}>Setting</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Appointment")}
+        style={{
+          backgroundColor: "white",
+          padding: 5,
+          borderRadius: 5,
+          margin: 5,
+        }}
+      >
+        <Text style={{ fontSize: 20, color: "black" }}>Appointment</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        onPress={() => navigation.navigate("Favourite")}
+        style={{
+          backgroundColor: "white",
+          padding: 5,
+          borderRadius: 5,
+          margin: 5,
+        }}
+      >
+        <Text style={{ fontSize: 20, color: "black" }}>Favourites</Text>
+      </TouchableOpacity>
+
     </Background>
   );
 };

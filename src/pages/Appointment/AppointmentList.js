@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
+import { Text, View} from 'react-native'
+import AppointmentStyle from "./AppointmentStyle"
    
 class AppointmentList extends Component {
     constructor(props){
@@ -46,9 +47,9 @@ class AppointmentList extends Component {
                 {
                     this.state.appointment.map((item) =>(                    
                         <Text key = {item.AppointmentID}
-                              style={styles.title}> 
+                              style={AppointmentStyle.title}> 
                             Appointment {item.AppointmentID} {"\n"}
-                            <Text style = {styles.content}>
+                            <Text style = {AppointmentStyle.content}>
                                 On {item.AppointmentDt} At {item.AppointmentTime} {"\n"}
                                 {item.ServiceNm} for Vehicle {item.VehicleID} {"\n"}
                                 In {item.BranchNm}. {"\n"}
@@ -63,24 +64,3 @@ class AppointmentList extends Component {
 }
 
 export default AppointmentList;
-
-const styles = StyleSheet.create ({
-    title: {
-        left: 20,
-        fontFamily: "Arial",
-        fontStyle: "normal",
-        fontWeight:"normal",
-        fontSize: 18,
-        color: "#000000",
-    }, 
-
-    content:{
-        left: 20,
-        fontFamily: "Arial",
-        fontStyle: "normal",
-        fontWeight:"normal",
-        fontSize: 16,
-        lineHeight: 20,
-        color: "#C4C4C4",
-    }
-})
