@@ -2,8 +2,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
-import { HomeScreen, SignUpScreen, AppointmentListScreen } from "./pages";
-import SignInScreen from "./pages/SignIn/SignIn";
+import { HomeScreen, SignUpScreen, ProfileScreen, SignInScreen, SettingsScreen,AppointmentListScreen } from "./pages";
 
 const Stack = createStackNavigator();
 
@@ -43,6 +42,16 @@ const App = () => {
           name="AppointmentListPage"
           component={AppointmentListScreen}
           options={{ title: "AppointmentListPage" }}
+          />
+        <Stack.Screen  
+          name="Profile"
+          component={ProfileScreen}
+          options={{ title: "Profile" }}
+        />
+        <Stack.Screen
+          name="Settings"
+          component={SettingsScreen}
+          options={{ title: "Setting" }}
         />
       </Stack.Navigator>
     </NavigationContainer>
