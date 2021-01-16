@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 // TODO: Uncomment after FavouriteScreen impl
-// import { FavouriteScreen } from "../../pages";
+import { FavouriteScreen } from "../../pages";
 
 const Stack = createStackNavigator();
 
