@@ -2,6 +2,7 @@ import Home from "./Home";
 import SignUp from "./SignUp";
 import Appointment from "./Appointment";
 import SignIn from "./SignIn";
+
 import Profile from "./Profile";
 import Settings from "./Settings";
 import Favourite from "./Favourite"
