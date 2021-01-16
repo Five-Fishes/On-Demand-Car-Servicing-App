@@ -1,19 +1,17 @@
 import React from "react";
-import { View, TextInput, Text, Alert, StyleSheet, ToolbarAndroidComponent} from "react-native";
+import { View, Text, ScrollView} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Background from "../../components/shared/PageBackground";
 import AppointmentList from "./AppointmentList";
+import AppointmentListStyle from "./AppointmentListStyle";
 
 const AppointmentListPage = ({navigation}) => {  
   return (
       <Background>
+        <View style = {AppointmentListStyle.toolbar}>
         <Text style ={{
             color:"#FFFFFF",
-            position: "absolute",
-            width: 229,
-            height: 44,
-            left: 103,
-            top: 44,
+            alignSelf: "center",  
             fontFamily: "Arial",
             fontStyle: "normal",
             fontWeight: "bold",
@@ -23,8 +21,9 @@ const AppointmentListPage = ({navigation}) => {
           }}>
             Appointment
         </Text>
+        </View>
 
-        <View style = {styles.container}>
+        <View style = {AppointmentListStyle.container}>
           <TouchableOpacity 
             style = {{              
                 position: "absolute",
@@ -102,44 +101,13 @@ const AppointmentListPage = ({navigation}) => {
               Any Date
             </Text>
           </TouchableOpacity>
-        </View>
 
-        <View style = {styles.linearlayout}>
-          <AppointmentList/>
-        </View>
+          <ScrollView style = {AppointmentListStyle.linearlayout}>
+            <AppointmentList/>
+          </ScrollView>
+
+        </View>    
       </Background>
     );
 };
-
-
-  const styles = StyleSheet.create ({
-
-    toolbar:{
-      position:"absolute",
-      backgroundColor:'#AAAAAA',
-      top:30,
-      bottom:10,
-      //flexDirection:'row'
-  },
-    //create container style
-    container:{
-      flexDirection:"column",
-      flex:1,
-      position: "absolute",
-      width: 411,
-      height: 638, 
-      top: 125,
-      borderRadius: 40,
-      backgroundColor: "#FFFFFF",
-    },
-
-    linearlayout:{
-      position: "absolute",
-      width: 411,
-      height: 400, 
-      top: 245,
-      backgroundColor: "#FFFFFF",
-    }
-  });
-
-  export default AppointmentListPage;
+export default AppointmentListPage;
