@@ -1,7 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
 // TODO: Uncomment after AppointmentScreen impl
-// import { AppointmentScreen } from "../../pages";
+import { AppointmentListScreen } from "../../pages";
 
 const Stack = createStackNavigator();
 
@@ -23,7 +23,7 @@ const AppointmentStack = () => {
       }}
     >
       <Stack.Screen
-        name="Appointment" component={AppointmentScreen}
+        name="Appointment" component={AppointmentListScreen}
         options={{ title: "Appointment" }}
       />
     </Stack.Navigator>
