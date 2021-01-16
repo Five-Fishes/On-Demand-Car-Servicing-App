@@ -1,7 +1,8 @@
 import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { HomeScreen, SignUpScreen, ProfileScreen, SignInScreen, SettingsScreen } from "./pages";
+
+import { HomeScreen, SignUpScreen, ProfileScreen, SignInScreen, SettingsScreen,AppointmentListScreen } from "./pages";
 
 const Stack = createStackNavigator();
 
@@ -38,6 +39,11 @@ const App = () => {
           options={{ title: "Home" }}
         />
         <Stack.Screen
+          name="AppointmentListPage"
+          component={AppointmentListScreen}
+          options={{ title: "AppointmentListPage" }}
+          />
+        <Stack.Screen  
           name="Profile"
           component={ProfileScreen}
           options={{ title: "Profile" }}
