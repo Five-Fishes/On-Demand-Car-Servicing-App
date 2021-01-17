@@ -1,71 +1,142 @@
+import { Image, View, ScrollView, SafeAreaView } from "react-native";
 import * as React from "react";
 import { Text, TouchableOpacity } from "react-native";
 import { Background } from "../../components/shared";
+import HomeStyle from "./HomeStyle";
 
-const Home = ({ navigation }) => {
-  return (
+const CarTowing = require("../../staticResources/images/CarTowing.png");
+const Diagnostic = require("../../staticResources/images/Diagnostic.png");
+const TyreReplacement = require("../../staticResources/images/TyreReplacement.png");
+const BatteryReplacement = require("../../staticResources/images/BatteryReplacement.png");
+
+const Home = ({navigation}) => {
+  return(
     <Background>
-      <Text style={{ color: "white" }}>Home Screen</Text>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("SignUp")}
-        style={{
-          backgroundColor: "white",
-          padding: 5,
-          borderRadius: 5,
-          margin: 5,
-        }}
-      >
-        <Text style={{ fontSize: 20, color: "black" }}>Sign Up</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Profile")}
-        style={{
-          backgroundColor: "white",
-          padding: 5,
-          borderRadius: 5,
-          margin: 5,
-        }}
-      >
-        <Text style={{ fontSize: 20, color: "black" }}>Profile</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Settings")}
-        style={{
-          backgroundColor: "white",
-          padding: 5,
-          borderRadius: 5,
-          margin: 5,
-        }}
-      >
-        <Text style={{ fontSize: 20, color: "black" }}>Setting</Text>
+      
+      <View style = {HomeStyle.mainContainer}>
+      <ScrollView>
+        <Text style = {{
+          color:"#686060", 
+          paddingLeft: 32,
+          paddingTop: 18,
+          fontSize:22,
+          fontFamily:"Arial",
+          fontStyle:"normal",
+          fontWeight:"600",
+        }
+        }>
+          Categories
+        </Text>
+
+      <View style = {HomeStyle.categoryContainer}>
+      <TouchableOpacity style = {HomeStyle.imageContainer}>
+         <Image source = {CarTowing} style = {HomeStyle.img}/>
+         <Text style = {HomeStyle.imgText}>
+           Car Towing 
+         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Appointment")}
-        style={{
-          backgroundColor: "white",
-          padding: 5,
-          borderRadius: 5,
-          margin: 5,
-        }}
-      >
-        <Text style={{ fontSize: 20, color: "black" }}>Appointment</Text>
+      <TouchableOpacity style = {HomeStyle.imageContainer}>
+         <Image source = {Diagnostic} style = {HomeStyle.img}/>
+         <Text style = {HomeStyle.imgText}>
+           Diagnostic
+         </Text>
       </TouchableOpacity>
 
-      <TouchableOpacity
-        onPress={() => navigation.navigate("Favourite")}
-        style={{
-          backgroundColor: "white",
-          padding: 5,
-          borderRadius: 5,
-          margin: 5,
-        }}
-      >
-        <Text style={{ fontSize: 20, color: "black" }}>Favourites</Text>
+      <TouchableOpacity style = {HomeStyle.imageContainer}>
+         <Image source = {TyreReplacement} style = {HomeStyle.img}/>
+         <Text style = {HomeStyle.imgText}>
+           Tyre Replacement
+         </Text>
       </TouchableOpacity>
 
+      <TouchableOpacity style = {HomeStyle.imageContainer}>
+         <Image source = {BatteryReplacement} style = {HomeStyle.img}/>
+         <Text style = {HomeStyle.imgText}>
+           Battery Replacement
+         </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style = {HomeStyle.imageContainer}>
+      <Image source = {BatteryReplacement} style = {HomeStyle.img}/>
+         <Text style = {HomeStyle.imgText}>
+           Repair
+         </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style = {HomeStyle.imageContainer}>
+      <Image source = {BatteryReplacement} style = {HomeStyle.img}/>
+         <Text style = {HomeStyle.imgText}>
+           Others
+         </Text>
+      </TouchableOpacity>
+
+      </View>
+      
+      <Text style = {HomeStyle.title}>          
+          Top Recommended Services
+        </Text>
+        
+      <SafeAreaView style={[HomeStyle.scrollableLayout]} >
+        <ScrollView horizontal>
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+        
+        </ScrollView>
+      </SafeAreaView>
+
+      <Text style = {HomeStyle.title}>
+          Top Rated Services
+        </Text>
+      <SafeAreaView style={[HomeStyle.scrollableLayout]} >
+        <ScrollView horizontal>
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+
+        <TouchableOpacity style = {HomeStyle.recommendedContainer}>
+          
+        </TouchableOpacity>
+        
+        </ScrollView>
+      </SafeAreaView>
+
+      </ScrollView>
+      </View>
+      
+      
     </Background>
   );
 };
 
 export default Home;
+
