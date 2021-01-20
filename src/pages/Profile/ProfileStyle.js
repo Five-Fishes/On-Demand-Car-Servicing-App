@@ -8,6 +8,9 @@ export default ProfileStyle = StyleSheet.create({
     width: profileImgSize,
     height: profileImgSize,
     backgroundColor: "white",
+    marginTop: "10%",
+    zIndex: 10,
+    alignSelf: "center"
   },
   userInfoContainer: {
     textAlign: "center",

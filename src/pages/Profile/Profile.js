@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { View, Text, Image, FlatList } from "react-native";
+import { View, Text, Image, FlatList, ScrollView } from "react-native";
+import { List, ListItem } from "native-base";
 import { Background } from "../../components/shared";
 import styles from "./ProfileStyle";
 
@@ -43,46 +44,40 @@ class Profile extends Component {
   render() {
     return (
       <Background>
-        <View
-          style={{
-            marginTop: "20%",
-            zIndex: 10,
-          }}
-        >
+        <ScrollView style={{
+          width: "98%"
+        }}>
           <Image style={styles.profileImg} source={profilePlaceHolder} />
-        </View>
-        <View style={styles.userInfoContainer}>
-          <Text style={styles.username}>Paul Choi</Text>
+          <View style={styles.userInfoContainer}>
+            <Text style={styles.username}>Paul Choi</Text>
 
-          <Text style={styles.sectionTitle}>Vechicle Details</Text>
-          <FlatList
-            style={{ maxHeight: 80 }}
-            data={this.state.vechileList}
-            keyExtractor={(item, index) => item.Id.toString()}
-            renderItem={({ item }) => (
-              <View style={styles.listEleContainer}>
-                <Text style={styles.listElement}>
-                  {item.VehiclePlateNumber} - {item.VechicleBrand}{" "}
-                  {item.VechicleModel}
-                </Text>
-              </View>
-            )}
-          ></FlatList>
+            <List>
+              <ListItem itemDivider>
+                <Text style={styles.sectionTitle}>Vechicle Details</Text>
+              </ListItem>
+              {this.state.vechileList.map(vehicle => (
+                <ListItem key={"vehicle-"+vehicle.Id} style={styles.listEleContainer}>
+                  <Text style={styles.listElement}>
+                    {vehicle.VehiclePlateNumber} - {vehicle.VechicleBrand}{" "}
+                    {vehicle.VechicleModel}
+                  </Text>
+                </ListItem>
+              ))}
 
-          <Text style={styles.sectionTitle}>History</Text>
-          <FlatList
-            data={this.state.historyList}
-            keyExtractor={(item, index) => item.Id.toString()}
-            renderItem={({ item }) => (
-              <View style={styles.listEleContainer}>
-                <Text style={styles.listElement}>Workshop: {item.Branch}</Text>
-                <Text style={styles.listElement}>Amount: {item.Amount}</Text>
-              </View>
-            )}
-          >
-            <Text>Caroline Aaron</Text>
-          </FlatList>
-        </View>
+              <ListItem itemDivider>
+                <Text style={styles.sectionTitle}>History</Text>
+              </ListItem>
+              {this.state.historyList.map(item => (
+                <ListItem key={"history-"+item.Id} style={styles.listEleContainer}>
+                  <Text style={styles.listElement}>
+                    Workshop: {item.Branch}{"\n"}
+                    Amount: {item.Amount}
+                  </Text>
+                </ListItem>
+              ))}
+            </List>
+          </View>
+        </ScrollView>
       </Background>
     );
   }
