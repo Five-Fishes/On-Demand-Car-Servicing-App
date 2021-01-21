@@ -1,51 +1,50 @@
-import {StyleSheet, Dimensions} from "react-native";
-
-const deviceWidth = Dimensions.get('screen').width;
+import {StyleSheet,Dimensions } from "react-native";
 
 const HomeStyle = StyleSheet.create({
 
         mainContainer:{
             flex:1,
+            flexGrow:1,
+            flexWrap:'nowrap',
             width: "100%",
             height: "100%", 
             top: "5%",
             borderRadius: 40,
             backgroundColor: "#FFFFFF",
-            flexGrow:1,
+            
         },
 
         categoryContainer:{ 
-            marginLeft: 48,
-            paddingRight: 20,  
-            width: "80%",
-            height: "100%",
             flex:1,
             flexDirection: 'row',  
             flexGrow: 1,
             flexWrap:"wrap",
+            marginLeft: 48,
+            paddingRight: 20, 
+            width: "80%", 
             top: 15,
             alignContent:"stretch",
             justifyContent:'space-between',
         },
 
         searchbar:{
-          //flex: 1,
-          paddingLeft: 182,
-          textAlign: "right",
-          lineHeight: 14,
-          fontSize: 14,
-          color: "#FFFFFF",
+          //left: 137,
+          //width : 220,
+          marginLeft: 25,
+          marginRight: 30,
+          //marginBottom:30,
+          height: 20,
+          backgroundColor: 'transparent'   
         },
 
         scrollableLayout:{
-          marginLeft: 46,
-          top: 15,
-          paddingRight: 20,
           flex:1,
+          marginLeft: 46,
+          //top: 15,
+          paddingRight: 20,
           flexDirection: 'row',  
           flexGrow: 1,
           flexWrap: "nowrap",
-          //width: deviceWidth,
           alignContent:"stretch",
           justifyContent:'space-between',
           height: "100%"
@@ -81,7 +80,8 @@ const HomeStyle = StyleSheet.create({
         recommendedContainer:{
           marginLeft: 2,
           marginRight: 20,
-          padding: 7,
+          marginTop:18,
+          //padding: 7,
           width: 115,
           height: 139,
           borderRadius: 16,
@@ -89,12 +89,13 @@ const HomeStyle = StyleSheet.create({
           shadowOffset:{  width: 2,  height: 2,  },
           shadowColor: "black",
           shadowOpacity: 0.25,
+          
         },
 
         title:{
           color:"#686060", 
           paddingLeft: 32,
-          paddingTop: 37,
+          //paddingTop: 60,
           fontSize:22,
           fontFamily:"Arial",
           fontStyle:"normal",

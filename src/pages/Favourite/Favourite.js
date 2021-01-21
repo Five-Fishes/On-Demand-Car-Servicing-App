@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text, ScrollView} from "react-native";
+import { View, Text, ScrollView, SafeAreaView} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Background from "../../components/shared/PageBackground";
 import FavouriteList from "./FavouriteList";
@@ -24,62 +24,29 @@ const Favourite = ({navigation}) => {
         </View>
 
         <View style = {FavouriteStyle.container}>
+
+        <View style = {{flex:1, flexDirection:'row', marginLeft:20, paddingRight:20, minHeight:52, flexGrow:1}}>
           <TouchableOpacity 
-            style = {{              
-                position: "absolute",
-                padding: 7,
-                width: 106,
-                height: 37,
-                left: 20,
-                top: 31,
-                backgroundColor: "#F9FBFF",
-                shadowOffset:{  width: 2,  height: 2,  },
-                shadowColor: "black",
-                shadowOpacity: 0.25,
-                borderRadius: 20,                     
-            }}>
-            <Text style ={
-              { color:"#686060", 
-                alignSelf:"center",
-                fontSize:16,
-                fontFamily:"Arial",
-                fontStyle:"normal",
-                fontWeight:"600",
-              }}>
+            style = {[FavouriteStyle.button]}>
+            <Text style ={FavouriteStyle.buttonText}>
               Services
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity 
-            style = {{              
-                position: "absolute",
-                padding: 7,
-                width: 106,
-                height: 37,
-                left: 153,
-                top: 31,
-                backgroundColor: "#F9FBFF",
-                shadowOffset:{  width: 2,  height: 2,  },
-                shadowColor: "black",
-                shadowOpacity: 0.25,
-                borderRadius: 20,                     
-            }}>
-            <Text style ={
-              { color:"#686060", 
-                alignSelf:"center",
-                fontSize:16,
-                fontFamily:"Arial",
-                fontStyle:"normal",
-                fontWeight:"600",
-              }}>
+            style = {[FavouriteStyle.button]}>
+            <Text style ={FavouriteStyle.buttonText}>
               Workshop
             </Text>
           </TouchableOpacity>
 
-          <ScrollView style = {FavouriteStyle.linearlayout}>
+          </View>
+
+          <View style = {{flex:12}}>
+          <ScrollView contentInset= {{bottom: 30}} style = {FavouriteStyle.linearlayout}>
             <FavouriteList/>
           </ScrollView>
-
+          </View>
         </View>    
       </Background>
     );
