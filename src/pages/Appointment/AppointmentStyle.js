@@ -7,15 +7,14 @@ const AppointmentStyle = StyleSheet.create ({
 
     button:{
       padding: 7,
-      marginRight:"6%",
-      width: 106,
+      width: "110%",
       height: 37,
       marginTop: 31,
       backgroundColor: "#F9FBFF",
       shadowOffset:{  width: 2,  height: 2,  },
       shadowColor: "black",
       shadowOpacity: 0.25,
-      borderRadius: 20,      
+      borderRadius: 20,   
     },
 
     buttonText:{

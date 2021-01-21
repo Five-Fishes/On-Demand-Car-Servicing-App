@@ -1,11 +1,32 @@
 import React from "react";
-import { View, Text, ScrollView, SafeAreaView} from "react-native";
+import { View, Text, ScrollView, Dimensions} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Background from "../../components/shared/PageBackground";
 import FavouriteList from "./FavouriteList";
 import FavouriteStyle from "./FavouriteStyle";
+import { Component } from "react";
+class Favourite extends Component { 
+  constructor(props) {
+    super(props);
 
-const Favourite = ({navigation}) => {  
+    // enable width and height to be flexible with different orientation
+    this.state = {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    }
+
+    this.onLayout = this.onLayout.bind(this);
+
+  }
+  onLayout(e) {
+    this.setState({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    });
+  }
+
+  render(){   
+
   return (
       <Background>
         <View style = {FavouriteStyle.toolbar}>
@@ -25,7 +46,7 @@ const Favourite = ({navigation}) => {
 
         <View style = {FavouriteStyle.container}>
 
-        <View style = {{flex:1, flexDirection:'row', marginLeft:20, paddingRight:20, minHeight:52, flexGrow:1}}>
+        <View style = {{flex:1, flexDirection:'row', marginLeft:20, paddingRight:20, minHeight:52}}>
           <TouchableOpacity 
             style = {[FavouriteStyle.button]}>
             <Text style ={FavouriteStyle.buttonText}>
@@ -50,5 +71,6 @@ const Favourite = ({navigation}) => {
         </View>    
       </Background>
     );
+  }
 };
 export default Favourite;

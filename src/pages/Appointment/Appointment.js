@@ -1,11 +1,32 @@
 import React from "react";
-import { View, Text, ScrollView, SafeAreaView} from "react-native";
+import { View, Text, ScrollView, Dimensions} from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Background from "../../components/shared/PageBackground";
 import AppointmentList from "./AppointmentList";
 import AppointmentStyle from "./AppointmentStyle";
+import { Component } from "react";
 
-const Appointment = ({navigation}) => {  
+class Appointment extends Component {  
+  constructor(props) {
+    super(props);
+
+    // enable width and height to be flexible with different orientation
+    this.state = {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    }
+
+    this.onLayout = this.onLayout.bind(this);
+
+  }
+  onLayout(e) {
+    this.setState({
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    });
+  }
+
+  render(){  
   return (
       <Background>
         <View style = {AppointmentStyle.toolbar}>
@@ -25,7 +46,16 @@ const Appointment = ({navigation}) => {
 
         <View style = {AppointmentStyle.container}>
 
-        <View style = {{flex:1, flexDirection:'row', marginLeft:20, minHeight:52, paddingRight:20, flexGrow:1}}> 
+        <View onLayout={this.onLayout} style = {{
+          flex:1, 
+          flexDirection:'row', 
+          marginLeft:20, 
+          minHeight:60, 
+          marginRight:20, 
+          justifyContent:"space-between", 
+          width: this.state.width/2.5,
+          minWidth: 320,
+          }}> 
           <TouchableOpacity style = {AppointmentStyle.button}>
             <Text style ={AppointmentStyle.buttonText}>
               Today
@@ -47,7 +77,7 @@ const Appointment = ({navigation}) => {
           </TouchableOpacity>
         </View>
 
-          <View style = {{flex:12}}> 
+          <View style = {{flex:10}}> 
             <ScrollView contentInset= {{bottom: 30}} style = {AppointmentStyle.linearlayout}>
               <AppointmentList/>
             </ScrollView>
@@ -56,5 +86,6 @@ const Appointment = ({navigation}) => {
         </View>    
       </Background>
     );
+        }
 };
 export default Appointment;
