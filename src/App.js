@@ -2,7 +2,7 @@ import * as React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SignInScreen, SignUpScreen } from "./pages";
+import { SignInScreen, SignUpScreen, SignUpExtraScreen } from "./pages";
 import {
   HomeStack,
   FavouriteStack,
@@ -11,6 +11,9 @@ import {
   ProfileStack,
 } from "./navigation/index.js";
 import { Icon } from "native-base";
+import * as Font from "expo-font";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -18,10 +21,19 @@ const Stack = createStackNavigator();
 const activeColor = "#2A5BA8";
 const inactiveColor = "#000";
 
-const authenticated = true;
+const authenticated = false;
 
 const App = () => {
-  return authenticated ? (
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  useEffect(() => {
+    Font.loadAsync({
+      Roboto: require("native-base/Fonts/Roboto.ttf"),
+      Roboto_medium: require("native-base/Fonts/Roboto_medium.ttf"),
+    });
+  });
+
+  return isAuthenticated ? (
     <NavigationContainer>
       <Tab.Navigator
         initialRouteName="Home"
@@ -111,6 +123,7 @@ const App = () => {
   ) : (
     <NavigationContainer>
       <Stack.Navigator
+        headerMode="none"
         initialRouteName="SignIn"
         screenOptions={{
           headerStyle: {
@@ -125,16 +138,24 @@ const App = () => {
           },
         }}
       >
-        <Stack.Screen
-          name="SignIn"
-          component={SignInScreen}
-          options={{ title: "Sign In" }}
-        />
+        <Stack.Screen name="SignIn" options={{ title: "Sign In" }}>
+          {(props) => (
+            <SignInScreen {...props} setIsAuthenticated={setIsAuthenticated} />
+          )}
+        </Stack.Screen>
         <Stack.Screen
           name="SignUp"
           component={SignUpScreen}
           options={{ title: "Sign Up" }}
         />
+        <Stack.Screen name="SignUpExtra" options={{ title: "Sign Up Extra" }}>
+          {(props) => (
+            <SignUpExtraScreen
+              {...props}
+              setIsAuthenticated={setIsAuthenticated}
+            />
+          )}
+        </Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
   );

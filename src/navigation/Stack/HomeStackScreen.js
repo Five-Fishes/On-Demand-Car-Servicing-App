@@ -7,6 +7,7 @@ const Stack = createStackNavigator();
 const HomeStack = () => {
   return (
     <Stack.Navigator
+      headerMode="none"
       initialRouteName="Home"
       screenOptions={{
         headerStyle: {
@@ -22,7 +23,8 @@ const HomeStack = () => {
       }}
     >
       <Stack.Screen
-        name="Home" component={HomeScreen}
+        name="Home"
+        component={HomeScreen}
         options={{ title: "Home" }}
       />
     </Stack.Navigator>

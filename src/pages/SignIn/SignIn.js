@@ -5,7 +5,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import SignInStyle from "./SignInStyle";
 import Background from "../../components/shared/PageBackground/PageBackground";
 
-const SignIn = ({ navigation }) => {
+const SignIn = ({ navigation, setIsAuthenticated }) => {
   const [image, setImage] = useState();
 
   useEffect(() => {
@@ -20,9 +20,10 @@ const SignIn = ({ navigation }) => {
             source={image}
             style={{
               alignSelf: "center",
-              width: 300,
-              height: 300,
+              width: "101%",
               flex: 3,
+              backgroundColor: "transparent",
+              borderColor: "transparent",
             }}
           />
           <View style={{ flex: 5 }}>
@@ -30,6 +31,8 @@ const SignIn = ({ navigation }) => {
               <TextInput
                 placeholder="Username"
                 textContentType="name"
+                underlineColorAndroid="#FFFFFF"
+                placeholderTextColor="#FFFFFF"
                 style={SignInStyle.input}
               />
             </View>
@@ -38,33 +41,45 @@ const SignIn = ({ navigation }) => {
               <TextInput
                 placeholder="Password"
                 textContentType="password"
+                underlineColorAndroid="#FFFFFF"
+                placeholderTextColor="#FFFFFF"
                 style={SignInStyle.input}
               />
             </View>
 
             <TouchableOpacity
               onPress={() => {
-                navigation.navigate("Home");
+                setIsAuthenticated(true);
               }}
               style={{
                 marginVertical: 50,
-                borderRadius: 5,
-                backgroundColor: "white",
+                width: "30%",
+                backgroundColor: "transparent",
                 alignSelf: "baseline",
                 alignSelf: "center",
-                padding: 10,
+                borderColor: "#FFFFFF",
+                borderWidth: 1,
+                padding: 5,
               }}
             >
-              <Text>Login</Text>
+              <Text
+                style={{
+                  color: "#FFFFFF",
+                  alignSelf: "center",
+                  fontWeight: "bold",
+                }}
+              >
+                Login
+              </Text>
             </TouchableOpacity>
             <Text
-              style={{ alignSelf: "center" }}
+              style={{ alignSelf: "center", margin: 5, color: "#FFFFFF" }}
               onPress={() => Alert.alert("Forgot Password Pressed")}
             >
               Forgot your password?
             </Text>
             <Text
-              style={{ alignSelf: "center" }}
+              style={{ alignSelf: "center", margin: 5, color: "#1C4687" }}
               onPress={() => navigation.navigate("SignUp")}
             >
               Register Here

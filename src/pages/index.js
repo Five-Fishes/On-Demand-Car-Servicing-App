@@ -1,17 +1,17 @@
-import Home from "./Home";
-import SignUp from "./SignUp";
 import Appointment from "./Appointment";
-import SignIn from "./SignIn";
-
+import Favourite from "./Favourite";
+import Home from "./Home";
 import Profile from "./Profile";
 import Settings from "./Settings";
-import Favourite from "./Favourite"
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import SignUpExtra from "./SignUpExtra";
 
-export { Home as HomeScreen };
-export { SignUp as SignUpScreen };
-export { Profile as ProfileScreen };
-export { SignIn as SignInScreen };
-export { Settings as SettingsScreen };
 export { Appointment as AppointmentScreen };
 export { Favourite as FavouriteScreen };
-
+export { Home as HomeScreen };
+export { Profile as ProfileScreen };
+export { Settings as SettingsScreen };
+export { SignIn as SignInScreen };
+export { SignUp as SignUpScreen };
+export { SignUpExtra as SignUpExtraScreen };
