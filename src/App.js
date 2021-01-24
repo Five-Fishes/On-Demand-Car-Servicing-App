@@ -14,12 +14,13 @@ import { Icon } from "native-base";
 import * as Font from "expo-font";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Image } from "react-native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const activeColor = "#2A5BA8";
-const inactiveColor = "#000";
+const inactiveColor = "#867A7A";
 
 const authenticated = false;
 
@@ -48,9 +49,18 @@ const App = () => {
           options={{
             tabBarLabel: "Home",
             fontWeight: "bold",
-            tabBarIcon: ({ color, size }) => {
-              <Icon name="home" color={color} size={size} />;
-              // <Icon ios='ios-menu' android='md-menu' color={color} size={size} />
+            tabBarIcon: ({ focused, color, size }) => {
+              return focused ? (
+                <Image
+                  source={require("../src/staticResources/icons/24/basic/home.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              ) : (
+                <Image
+                  source={require("../src/staticResources/icons/24-2/basic/home.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              );
             },
           }}
         />
@@ -60,13 +70,18 @@ const App = () => {
           options={{
             tabBarLabel: "Favourite",
             fontWeight: "bold",
-            tabBarIcon: ({ color, size }) => {
-              <Icon
-                type="MaterialCommunityIcons"
-                name="star-outline"
-                color={color}
-                size={size}
-              />;
+            tabBarIcon: ({ focused, color, size }) => {
+              return focused ? (
+                <Image
+                  source={require("../src/staticResources/icons/favourite-focused.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              ) : (
+                <Image
+                  source={require("../src/staticResources/icons/favourite.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              );
             },
           }}
         />
@@ -76,13 +91,18 @@ const App = () => {
           options={{
             tabBarLabel: "Appointment",
             fontWeight: "bold",
-            tabBarIcon: ({ color, size }) => {
-              <Icon
-                type="MaterialCommunityIcons"
-                name="truck-outline"
-                color={color}
-                size={size}
-              />;
+            tabBarIcon: ({ focused, color, size }) => {
+              return focused ? (
+                <Image
+                  source={require("../src/staticResources/icons/appointment-focused.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              ) : (
+                <Image
+                  source={require("../src/staticResources/icons/appointment.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              );
             },
           }}
         />
@@ -92,13 +112,18 @@ const App = () => {
           options={{
             tabBarLabel: "Message",
             fontWeight: "bold",
-            tabBarIcon: ({ color, size }) => {
-              <Icon
-                type="MaterialCommunityIcons"
-                name="email-outline"
-                color={color}
-                size={size}
-              />;
+            tabBarIcon: ({ focused, color, size }) => {
+              return focused ? (
+                <Image
+                  source={require("../src/staticResources/icons/message-focused.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              ) : (
+                <Image
+                  source={require("../src/staticResources/icons/message.png")}
+                  style={{ height: 30, width: 30 }}
+                />
+              );
             },
           }}
         />
@@ -108,13 +133,30 @@ const App = () => {
           options={{
             tabBarLabel: "Profile",
             fontWeight: "bold",
-            tabBarIcon: ({ color, size }) => {
-              <Icon
-                ios="ios-person-circle-outline"
-                android="md-person-circle-outline"
-                color={color}
-                size={size}
-              />;
+            tabBarIcon: ({ focused, color, size }) => {
+              return focused ? (
+                <Image
+                  source={require("../src/staticResources/icons/profile.png")}
+                  style={{
+                    height: 30,
+                    width: 30,
+                    borderWidth: 3,
+                    borderColor: activeColor,
+                    borderRadius: 30,
+                  }}
+                />
+              ) : (
+                <Image
+                  source={require("../src/staticResources/icons/profile.png")}
+                  style={{
+                    height: 30,
+                    width: 30,
+                    borderWidth: 3,
+                    borderColor: inactiveColor,
+                    borderRadius: 30,
+                  }}
+                />
+              );
             },
           }}
         />
