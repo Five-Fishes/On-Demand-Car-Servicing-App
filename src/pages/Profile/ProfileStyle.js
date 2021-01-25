@@ -3,6 +3,9 @@ import { StyleSheet } from "react-native";
 const profileImgSize = 150;
 
 export default ProfileStyle = StyleSheet.create({
+  appbar: {
+    maxHeight: 125,
+  },
   profileImg: {
     borderRadius: profileImgSize / 2,
     width: profileImgSize,
@@ -10,13 +13,14 @@ export default ProfileStyle = StyleSheet.create({
     backgroundColor: "white",
     marginTop: "10%",
     zIndex: 10,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   userInfoContainer: {
     textAlign: "center",
     backgroundColor: "#fff",
     padding: 20,
-    borderRadius: 20,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
     marginTop: "-5%",
     width: "100%",
     height: "75%",

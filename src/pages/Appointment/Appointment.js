@@ -8,7 +8,10 @@ import AppointmentStyle from "./AppointmentStyle";
 const Appointment = () => {
   return (
     <Background>
-      <ScrollView style={{ width: "100%" }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ width: "100%" }}
+      >
         <View style={AppointmentStyle.appbar}>
           <Text
             style={{
