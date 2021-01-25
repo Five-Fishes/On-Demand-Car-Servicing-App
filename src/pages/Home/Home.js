@@ -42,7 +42,7 @@ class Home extends Component {
     return (
       <Background>
         <View style={{ flex: 1 }}>
-          <ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
             <Content
               style={{
                 paddingHorizontal: 30,
@@ -120,6 +120,7 @@ class Home extends Component {
                   showsHorizontalScrollIndicator={false}
                   style={{ paddingBottom: 37 }}
                 >
+                  <View style={{ width: 20 }} />
                   <TouchableOpacity
                     style={HomeStyle.recommendedContainer}
                   ></TouchableOpacity>
@@ -150,6 +151,7 @@ class Home extends Component {
                   showsHorizontalScrollIndicator={false}
                   style={{ paddingBottom: 59 }}
                 >
+                  <View style={{ width: 20 }} />
                   <TouchableOpacity
                     style={HomeStyle.recommendedContainer}
                   ></TouchableOpacity>

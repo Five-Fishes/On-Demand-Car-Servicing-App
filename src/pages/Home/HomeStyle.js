@@ -33,8 +33,8 @@ const HomeStyle = StyleSheet.create({
 
   scrollableLayout: {
     flex: 1,
-    marginLeft: 46,
-    paddingRight: 20,
+    marginLeft: 0,
+    paddingRight: 0,
     flexDirection: "row",
     flexGrow: 1,
     flexWrap: "nowrap",
@@ -72,15 +72,14 @@ const HomeStyle = StyleSheet.create({
   },
 
   recommendedContainer: {
-    marginLeft: 2,
-    marginRight: 20,
-    marginTop: 18,
+    margin: 10,
     width: 115,
     height: 139,
     borderRadius: 16,
     backgroundColor: "#FFFFFF",
     shadowOffset: { width: 2, height: 2 },
     shadowColor: "black",
+    elevation: 5,
     shadowOpacity: 0.25,
   },
 
