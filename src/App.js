@@ -10,11 +10,9 @@ import {
   MessageStack,
   ProfileStack,
 } from "./navigation/index.js";
-import { Icon } from "native-base";
 import * as Font from "expo-font";
-import { useState } from "react";
-import { useEffect } from "react";
-import { Image } from "react-native";
+import { useState, useEffect } from "react";
+import { Image, StatusBar } from "react-native";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -35,133 +33,136 @@ const App = () => {
   });
 
   return isAuthenticated ? (
-    <NavigationContainer>
-      <Tab.Navigator
-        initialRouteName="Home"
-        tabBarOptions={{
-          activeTintColor: activeColor,
-          inactiveTintColor: inactiveColor,
-        }}
-      >
-        <Tab.Screen
-          name="Home"
-          component={HomeStack}
-          options={{
-            tabBarLabel: "Home",
-            fontWeight: "bold",
-            tabBarIcon: ({ focused, color, size }) => {
-              return focused ? (
-                <Image
-                  source={require("../src/staticResources/icons/24/basic/home.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              ) : (
-                <Image
-                  source={require("../src/staticResources/icons/24-2/basic/home.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              );
-            },
+    <>
+      <StatusBar backgroundColor="#1C4687" />
+      <NavigationContainer>
+        <Tab.Navigator
+          initialRouteName="Home"
+          tabBarOptions={{
+            activeTintColor: activeColor,
+            inactiveTintColor: inactiveColor,
           }}
-        />
-        <Tab.Screen
-          name="Favourite"
-          component={FavouriteStack}
-          options={{
-            tabBarLabel: "Favourite",
-            fontWeight: "bold",
-            tabBarIcon: ({ focused, color, size }) => {
-              return focused ? (
-                <Image
-                  source={require("../src/staticResources/icons/favourite-focused.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              ) : (
-                <Image
-                  source={require("../src/staticResources/icons/favourite.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Appointment"
-          component={AppointmentStack}
-          options={{
-            tabBarLabel: "Appointment",
-            fontWeight: "bold",
-            tabBarIcon: ({ focused, color, size }) => {
-              return focused ? (
-                <Image
-                  source={require("../src/staticResources/icons/appointment-focused.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              ) : (
-                <Image
-                  source={require("../src/staticResources/icons/appointment.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Message"
-          component={MessageStack}
-          options={{
-            tabBarLabel: "Message",
-            fontWeight: "bold",
-            tabBarIcon: ({ focused, color, size }) => {
-              return focused ? (
-                <Image
-                  source={require("../src/staticResources/icons/message-focused.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              ) : (
-                <Image
-                  source={require("../src/staticResources/icons/message.png")}
-                  style={{ height: 30, width: 30 }}
-                />
-              );
-            },
-          }}
-        />
-        <Tab.Screen
-          name="Profile"
-          component={ProfileStack}
-          options={{
-            tabBarLabel: "Profile",
-            fontWeight: "bold",
-            tabBarIcon: ({ focused, color, size }) => {
-              return focused ? (
-                <Image
-                  source={require("../src/staticResources/icons/profile.png")}
-                  style={{
-                    height: 30,
-                    width: 30,
-                    borderWidth: 3,
-                    borderColor: activeColor,
-                    borderRadius: 30,
-                  }}
-                />
-              ) : (
-                <Image
-                  source={require("../src/staticResources/icons/profile.png")}
-                  style={{
-                    height: 30,
-                    width: 30,
-                    borderWidth: 3,
-                    borderColor: inactiveColor,
-                    borderRadius: 30,
-                  }}
-                />
-              );
-            },
-          }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+        >
+          <Tab.Screen
+            name="Home"
+            component={HomeStack}
+            options={{
+              tabBarLabel: "Home",
+              fontWeight: "bold",
+              tabBarIcon: ({ focused, color, size }) => {
+                return focused ? (
+                  <Image
+                    source={require("../src/staticResources/icons/24/basic/home.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                ) : (
+                  <Image
+                    source={require("../src/staticResources/icons/24-2/basic/home.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                );
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Favourite"
+            component={FavouriteStack}
+            options={{
+              tabBarLabel: "Favourite",
+              fontWeight: "bold",
+              tabBarIcon: ({ focused, color, size }) => {
+                return focused ? (
+                  <Image
+                    source={require("../src/staticResources/icons/favourite-focused.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                ) : (
+                  <Image
+                    source={require("../src/staticResources/icons/favourite.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                );
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Appointment"
+            component={AppointmentStack}
+            options={{
+              tabBarLabel: "Appointment",
+              fontWeight: "bold",
+              tabBarIcon: ({ focused, color, size }) => {
+                return focused ? (
+                  <Image
+                    source={require("../src/staticResources/icons/appointment-focused.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                ) : (
+                  <Image
+                    source={require("../src/staticResources/icons/appointment.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                );
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Message"
+            component={MessageStack}
+            options={{
+              tabBarLabel: "Message",
+              fontWeight: "bold",
+              tabBarIcon: ({ focused, color, size }) => {
+                return focused ? (
+                  <Image
+                    source={require("../src/staticResources/icons/message-focused.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                ) : (
+                  <Image
+                    source={require("../src/staticResources/icons/message.png")}
+                    style={{ height: 30, width: 30 }}
+                  />
+                );
+              },
+            }}
+          />
+          <Tab.Screen
+            name="Profile"
+            component={ProfileStack}
+            options={{
+              tabBarLabel: "Profile",
+              fontWeight: "bold",
+              tabBarIcon: ({ focused, color, size }) => {
+                return focused ? (
+                  <Image
+                    source={require("../src/staticResources/icons/profile.png")}
+                    style={{
+                      height: 30,
+                      width: 30,
+                      borderWidth: 3,
+                      borderColor: activeColor,
+                      borderRadius: 30,
+                    }}
+                  />
+                ) : (
+                  <Image
+                    source={require("../src/staticResources/icons/profile.png")}
+                    style={{
+                      height: 30,
+                      width: 30,
+                      borderWidth: 3,
+                      borderColor: inactiveColor,
+                      borderRadius: 30,
+                    }}
+                  />
+                );
+              },
+            }}
+          />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </>
   ) : (
     <NavigationContainer>
       <Stack.Navigator

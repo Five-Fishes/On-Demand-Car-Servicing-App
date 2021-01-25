@@ -29,6 +29,8 @@ const HomeStyle = StyleSheet.create({
 
   searchbar: {
     backgroundColor: "#FFFFFF",
+    flexGrow: 1,
+    height: 38,
   },
 
   scrollableLayout: {
@@ -72,7 +74,7 @@ const HomeStyle = StyleSheet.create({
   },
 
   recommendedContainer: {
-    margin: 10,
+    margin: 13,
     width: 115,
     height: 139,
     borderRadius: 16,

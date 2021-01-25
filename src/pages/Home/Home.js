@@ -43,20 +43,28 @@ class Home extends Component {
       <Background>
         <View style={{ flex: 1 }}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <Content
+            <View
               style={{
+                flexDirection: "row",
                 paddingHorizontal: 30,
-                paddingTop: 40,
-                paddingBottom: 20,
+                paddingTop: 30,
+                paddingBottom: 26,
+                height: 100,
               }}
             >
-              <Item rounded style={HomeStyle.searchbar}>
-                <Input placeholder="Search Services" textAlign="center" />
-                <Button transparent style={{ alignSelf: "center" }}>
-                  <Icon name="search"></Icon>
-                </Button>
-              </Item>
-            </Content>
+              <Content>
+                <Item rounded style={HomeStyle.searchbar}>
+                  <Input
+                    placeholder="Search Services"
+                    textAlign="center"
+                    style={{ fontSize: 14 }}
+                  />
+                </Item>
+              </Content>
+              <Button transparent style={{ alignSelf: "center" }} small>
+                <Icon name="search" style={{ color: "#FFFFFF" }}></Icon>
+              </Button>
+            </View>
 
             <View style={[HomeStyle.mainContainer]}>
               <Text
