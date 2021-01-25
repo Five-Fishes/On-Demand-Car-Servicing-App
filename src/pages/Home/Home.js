@@ -4,18 +4,21 @@ import {
   ScrollView,
   SafeAreaView,
   Dimensions,
+  Text,
+  TouchableOpacity,
 } from "react-native";
 import * as React from "react";
-import { Text, TouchableOpacity } from "react-native";
 import { Background } from "../../components/shared";
 import HomeStyle from "./HomeStyle";
 import { Component } from "react";
-import { Header, Item, Input, Icon, Button } from "native-base";
+import { Header, Item, Input, Icon, Button, Content } from "native-base";
 
 const CarTowing = require("../../staticResources/images/CarTowing.png");
 const Diagnostic = require("../../staticResources/images/Diagnostic.png");
 const TyreReplacement = require("../../staticResources/images/TyreReplacement.png");
 const BatteryReplacement = require("../../staticResources/images/BatteryReplacement.png");
+const Repair = require("../../staticResources/images/Repair.png");
+const Others = require("../../staticResources/images/Others.png");
 
 class Home extends Component {
   constructor(props) {
@@ -40,28 +43,20 @@ class Home extends Component {
       <Background>
         <View style={{ flex: 1 }}>
           <ScrollView>
-            <View
-              style={[
-                HomeStyle.searchbar,
-                { borderBottomColor: "transparent" },
-              ]}
+            <Content
+              style={{
+                paddingHorizontal: 30,
+                paddingTop: 40,
+                paddingBottom: 20,
+              }}
             >
-              <Header
-                searchBar
-                rounded
-                style={{ backgroundColor: "transparent" }}
-              >
-                <Item style={{ backgroundColor: "#FFFFFF" }}>
-                  <Input
-                    placeholder="Search Services Nearby"
-                    style={{ opacity: 0.44, fontSize: 14, paddingStart: 20 }}
-                  />
-                </Item>
-                <Button transparent>
-                  <Icon name="ios-search" style={{ color: "#FFFFFF" }} />
+              <Item rounded style={HomeStyle.searchbar}>
+                <Input placeholder="Search Services" textAlign="center" />
+                <Button transparent style={{ alignSelf: "center" }}>
+                  <Icon name="search"></Icon>
                 </Button>
-              </Header>
-            </View>
+              </Item>
+            </Content>
 
             <View style={[HomeStyle.mainContainer]}>
               <Text
@@ -105,12 +100,12 @@ class Home extends Component {
                 </TouchableOpacity>
 
                 <TouchableOpacity style={HomeStyle.imageContainer}>
-                  <Image source={BatteryReplacement} style={HomeStyle.img} />
+                  <Image source={Repair} style={HomeStyle.img} />
                   <Text style={HomeStyle.imgText}>Repair</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity style={HomeStyle.imageContainer}>
-                  <Image source={BatteryReplacement} style={HomeStyle.img} />
+                  <Image source={Others} style={HomeStyle.img} />
                   <Text style={HomeStyle.imgText}>Others</Text>
                 </TouchableOpacity>
               </View>

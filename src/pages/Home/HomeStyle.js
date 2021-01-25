@@ -7,8 +7,10 @@ const HomeStyle = StyleSheet.create({
     flexWrap: "nowrap",
     width: "100%",
     height: "100%",
-    top: "5%",
-    borderRadius: 40,
+    borderBottomLeftRadius: 0,
+    borderBottomRightRadius: 0,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
     backgroundColor: "#FFFFFF",
   },
 
@@ -26,19 +28,12 @@ const HomeStyle = StyleSheet.create({
   },
 
   searchbar: {
-    //left: 137,
-    //width : 220,
-    marginLeft: 25,
-    marginRight: 30,
-    //marginBottom:30,
-    height: 20,
-    backgroundColor: "transparent",
+    backgroundColor: "#FFFFFF",
   },
 
   scrollableLayout: {
     flex: 1,
     marginLeft: 46,
-    //top: 15,
     paddingRight: 20,
     flexDirection: "row",
     flexGrow: 1,
@@ -58,6 +53,7 @@ const HomeStyle = StyleSheet.create({
     shadowColor: "black",
     shadowOpacity: 0.25,
     borderRadius: 40,
+    elevation: 5,
     alignItems: "center",
   },
 
@@ -79,7 +75,6 @@ const HomeStyle = StyleSheet.create({
     marginLeft: 2,
     marginRight: 20,
     marginTop: 18,
-    //padding: 7,
     width: 115,
     height: 139,
     borderRadius: 16,
@@ -92,7 +87,6 @@ const HomeStyle = StyleSheet.create({
   title: {
     color: "#686060",
     paddingLeft: 32,
-    //paddingTop: 60,
     fontSize: 22,
     fontStyle: "normal",
     fontWeight: "600",
