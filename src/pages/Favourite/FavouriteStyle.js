@@ -5,10 +5,7 @@ const FavouriteStyle = StyleSheet.create({
   },
   button: {
     padding: 7,
-    marginRight: 27,
-    width: 106,
     height: 37,
-    marginTop: 31,
     backgroundColor: "#F9FBFF",
     shadowOffset: { width: 2, height: 2 },
     shadowColor: "black",
@@ -17,8 +14,8 @@ const FavouriteStyle = StyleSheet.create({
   },
 
   buttonText: {
+    textAlign: "center",
     color: "#686060",
-    alignSelf: "center",
     fontSize: 16,
     fontStyle: "normal",
     fontWeight: "600",

@@ -1,14 +1,12 @@
 import { StyleSheet } from "react-native";
 const AppointmentStyle = StyleSheet.create({
-  toolbar: {
-    top: "5%",
+  appbar: {
+    maxHeight: 125,
   },
 
   button: {
     padding: 7,
-    width: "110%",
     height: 37,
-    marginTop: 31,
     backgroundColor: "#F9FBFF",
     shadowOffset: { width: 2, height: 2 },
     shadowColor: "black",
@@ -28,9 +26,9 @@ const AppointmentStyle = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    top: "10%",
-    borderRadius: 40,
     backgroundColor: "#FFFFFF",
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
   },
 
   linearlayout: {
