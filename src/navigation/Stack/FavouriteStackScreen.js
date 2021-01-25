@@ -8,6 +8,7 @@ const Stack = createStackNavigator();
 const FavouriteStack = () => {
   return (
     <Stack.Navigator
+      headerMode="none"
       initialRouteName="Favourite"
       screenOptions={{
         headerStyle: {
@@ -23,7 +24,8 @@ const FavouriteStack = () => {
       }}
     >
       <Stack.Screen
-        name="Favourite" component={FavouriteScreen}
+        name="Favourite"
+        component={FavouriteScreen}
         options={{ title: "Favourite" }}
       />
     </Stack.Navigator>
