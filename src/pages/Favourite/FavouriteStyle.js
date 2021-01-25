@@ -1,9 +1,8 @@
 import { StyleSheet } from "react-native";
 const FavouriteStyle = StyleSheet.create({
-  toolbar: {
-    top: "5%",
+  appbar: {
+    maxHeight: 125,
   },
-
   button: {
     padding: 7,
     marginRight: 27,
@@ -29,8 +28,8 @@ const FavouriteStyle = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    top: "10%",
-    borderRadius: 40,
+    borderTopLeftRadius: 40,
+    borderTopRightRadius: 40,
     backgroundColor: "#FFFFFF",
   },
 

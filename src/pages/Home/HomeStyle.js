@@ -30,7 +30,7 @@ const HomeStyle = StyleSheet.create({
   searchbar: {
     backgroundColor: "#FFFFFF",
     flexGrow: 1,
-    height: 38,
+    height: 30,
   },
 
   scrollableLayout: {
