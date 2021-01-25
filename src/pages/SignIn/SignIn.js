@@ -74,7 +74,11 @@ const SignIn = ({ navigation, setIsAuthenticated }) => {
             </TouchableOpacity>
             <Text
               style={{ alignSelf: "center", margin: 5, color: "#FFFFFF" }}
-              onPress={() => Alert.alert("Forgot Password Pressed")}
+              onPress={() =>
+                Alert.alert(
+                  "Hahaha none of my business. Go figure out yourself"
+                )
+              }
             >
               Forgot your password?
             </Text>
