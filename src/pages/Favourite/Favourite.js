@@ -27,12 +27,10 @@ const Favourite = () => {
           <View style={FavouriteStyle.container}>
             <View
               style={{
-                alignContent: "space-between",
                 flexDirection: "row",
-                marginHorizontal: 20,
-                marginTop: 30,
-                marginBottom: 50,
-                minHeight: 52,
+                minHeight: 60,
+                justifyContent: "space-evenly",
+                marginVertical: 30,
               }}
             >
               <TouchableOpacity style={FavouriteStyle.button}>
@@ -43,12 +41,12 @@ const Favourite = () => {
                 <Text style={FavouriteStyle.buttonText}>Workshop</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={{ backgroundColor: "transparent" }}>
-                <Text style={FavouriteStyle.buttonText}></Text>
+              <TouchableOpacity style={FavouriteStyle.button}>
+                <Text style={FavouriteStyle.buttonText}>anything</Text>
               </TouchableOpacity>
             </View>
 
-            <FavouriteList style={{}} />
+            <FavouriteList />
           </View>
         </View>
       </ScrollView>
