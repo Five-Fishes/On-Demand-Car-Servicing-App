@@ -8,6 +8,7 @@ const Stack = createStackNavigator();
 const MessageStack = () => {
   return (
     <Stack.Navigator
+      headerMode="none"
       initialRouteName="Message"
       screenOptions={{
         headerStyle: {
@@ -23,7 +24,8 @@ const MessageStack = () => {
       }}
     >
       <Stack.Screen
-        name="Message" component={MessageScreen}
+        name="Message"
+        component={MessageScreen}
         options={{ title: "Message" }}
       />
     </Stack.Navigator>

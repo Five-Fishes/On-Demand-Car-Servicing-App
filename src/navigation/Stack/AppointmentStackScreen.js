@@ -8,6 +8,7 @@ const Stack = createStackNavigator();
 const AppointmentStack = () => {
   return (
     <Stack.Navigator
+      headerMode="none"
       initialRouteName="Appointment"
       screenOptions={{
         headerStyle: {
@@ -23,7 +24,8 @@ const AppointmentStack = () => {
       }}
     >
       <Stack.Screen
-        name="Appointment" component={AppointmentScreen}
+        name="Appointment"
+        component={AppointmentScreen}
         options={{ title: "Appointment" }}
       />
     </Stack.Navigator>

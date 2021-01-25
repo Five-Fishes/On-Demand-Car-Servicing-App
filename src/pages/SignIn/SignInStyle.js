@@ -7,11 +7,13 @@ export default SignInStyle = StyleSheet.create({
   },
   inputBorder: {
     margin: 10,
-    backgroundColor: "#FFFFFF",
+    backgroundColor: "transparent",
+    paddingHorizontal: 40,
     borderRadius: 5,
   },
   input: {
     alignSelf: "stretch",
+    color: "#FFFFFF",
     padding: 10,
   },
 });
