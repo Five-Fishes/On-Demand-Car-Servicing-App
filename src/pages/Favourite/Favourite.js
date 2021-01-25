@@ -8,7 +8,10 @@ import FavouriteStyle from "./FavouriteStyle";
 const Favourite = () => {
   return (
     <Background>
-      <ScrollView style={{ width: "100%", height: "100%" }}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ width: "100%", height: "100%" }}
+      >
         <View style={FavouriteStyle.appbar}>
           <Text
             style={{

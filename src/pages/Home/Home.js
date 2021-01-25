@@ -28,10 +28,10 @@ const Home = () => {
             style={{
               flexDirection: "row",
               paddingHorizontal: 30,
-              paddingTop: 32,
+              paddingTop: 50,
               margin: 0,
-              paddingBottom: 26,
-              maxHeight: 100,
+              paddingBottom: 30,
+              maxHeight: 125,
             }}
           >
             <Content>
@@ -62,10 +62,7 @@ const Home = () => {
               Categories
             </Text>
 
-            <View
-              onLayout={this.onLayout}
-              style={[HomeStyle.categoryContainer]}
-            >
+            <View style={[HomeStyle.categoryContainer]}>
               <TouchableOpacity style={HomeStyle.imageContainer}>
                 <Image source={CarTowing} style={HomeStyle.img} />
                 <Text style={HomeStyle.imgText}>Car Towing</Text>
