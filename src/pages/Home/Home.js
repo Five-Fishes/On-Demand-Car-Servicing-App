@@ -19,7 +19,7 @@ const BatteryReplacement = require("../../staticResources/images/BatteryReplacem
 const Repair = require("../../staticResources/images/Repair.png");
 const Others = require("../../staticResources/images/Others.png");
 
-const Home = () => {
+const Home = ({ navigation }) => {
   return (
     <Background>
       <View style={{ flex: 1 }}>
@@ -43,7 +43,17 @@ const Home = () => {
                 />
               </Item>
             </Content>
-            <Button transparent style={{ alignSelf: "center" }} small>
+            <Button
+              transparent
+              style={{ alignSelf: "center" }}
+              small
+              onPress={() => {
+                navigation.navigate("SearchResult", {
+                  filter: JSON.stringify({ branchNm: "ABC Towing" }),
+                  searchText: "ABC Towing",
+                });
+              }}
+            >
               <Icon name="search" style={{ color: "#FFFFFF" }}></Icon>
             </Button>
           </View>
@@ -63,32 +73,92 @@ const Home = () => {
             </Text>
 
             <View style={[HomeStyle.categoryContainer]}>
-              <TouchableOpacity style={HomeStyle.imageContainer}>
+              <TouchableOpacity
+                style={HomeStyle.imageContainer}
+                onPress={() => {
+                  navigation.navigate("SearchResult", {
+                    filter: JSON.stringify({
+                      services: "car towing service ID",
+                    }),
+                    searchText: "Car Towing",
+                  });
+                }}
+              >
                 <Image source={CarTowing} style={HomeStyle.img} />
                 <Text style={HomeStyle.imgText}>Car Towing</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={HomeStyle.imageContainer}>
+              <TouchableOpacity
+                style={HomeStyle.imageContainer}
+                onPress={() => {
+                  navigation.navigate("SearchResult", {
+                    filter: JSON.stringify({
+                      services: "car towing service ID",
+                    }),
+                    searchText: "Diagnostic",
+                  });
+                }}
+              >
                 <Image source={Diagnostic} style={HomeStyle.img} />
                 <Text style={HomeStyle.imgText}>Diagnostic</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={HomeStyle.imageContainer}>
+              <TouchableOpacity
+                style={HomeStyle.imageContainer}
+                onPress={() => {
+                  navigation.navigate("SearchResult", {
+                    filter: JSON.stringify({
+                      services: "car towing service ID",
+                    }),
+                    searchText: "Tyre Replacement",
+                  });
+                }}
+              >
                 <Image source={TyreReplacement} style={HomeStyle.img} />
                 <Text style={HomeStyle.imgText}>Tyre Replacement</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={HomeStyle.imageContainer}>
+              <TouchableOpacity
+                style={HomeStyle.imageContainer}
+                onPress={() => {
+                  navigation.navigate("SearchResult", {
+                    filter: JSON.stringify({
+                      services: "car towing service ID",
+                    }),
+                    searchText: "Battery Replacement",
+                  });
+                }}
+              >
                 <Image source={BatteryReplacement} style={HomeStyle.img} />
                 <Text style={HomeStyle.imgText}>Battery Replacement</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={HomeStyle.imageContainer}>
+              <TouchableOpacity
+                style={HomeStyle.imageContainer}
+                onPress={() => {
+                  navigation.navigate("SearchResult", {
+                    filter: JSON.stringify({
+                      services: "car towing service ID",
+                    }),
+                    searchText: "Repair",
+                  });
+                }}
+              >
                 <Image source={Repair} style={HomeStyle.img} />
                 <Text style={HomeStyle.imgText}>Repair</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={HomeStyle.imageContainer}>
+              <TouchableOpacity
+                style={HomeStyle.imageContainer}
+                onPress={() => {
+                  navigation.navigate("SearchResult", {
+                    filter: JSON.stringify({
+                      services: "car towing service ID",
+                    }),
+                    searchText: "Others",
+                  });
+                }}
+              >
                 <Image source={Others} style={HomeStyle.img} />
                 <Text style={HomeStyle.imgText}>Others</Text>
               </TouchableOpacity>
