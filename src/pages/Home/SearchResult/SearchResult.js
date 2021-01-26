@@ -1,14 +1,18 @@
 import { Button, List, ListItem, Text } from "native-base";
 import React, { useState } from "react";
 import { Image, View, Alert } from "react-native";
-import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { ScrollView } from "react-native-gesture-handler";
 import { StackActions } from "@react-navigation/native";
 
 import PageBackground from "../../../components/shared/PageBackground";
+import { BranchDetailsModal } from "../../../components/shared";
 import SearchResultStyle from "./SearchResultStyle";
 
 const SearchResult = ({ navigation, route }) => {
   const { filter, searchText } = route.params;
+
+  const [selectedId, setSelectedId] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
   const [searchResult, setSearchResult] = useState([
     {
       id: 1,
@@ -59,6 +63,7 @@ const SearchResult = ({ navigation, route }) => {
       name: "ABC Towing",
     },
   ]);
+
   const bookNowBtnHandler = () => {
     Alert.alert(
       "Are you sure to book now?",
@@ -79,8 +84,19 @@ const SearchResult = ({ navigation, route }) => {
       ]
     );
   };
+
+  const branchItemHandler = (id) => {
+    setSelectedId(id.toString());
+    setModalVisible(true);
+  };
+
   return (
     <PageBackground>
+      <BranchDetailsModal
+        id={selectedId}
+        modalVisible={modalVisible}
+        setModalVisible={setModalVisible}
+      />
       <ScrollView
         style={{ width: "100%" }}
         showsVerticalScrollIndicator={false}
@@ -91,7 +107,10 @@ const SearchResult = ({ navigation, route }) => {
         <View style={SearchResultStyle.card}>
           <List>
             {searchResult.map((branch) => (
-              <ListItem key={branch.id}>
+              <ListItem
+                key={branch.id}
+                onPress={() => branchItemHandler(branch.id)}
+              >
                 <View style={SearchResultStyle.imageContainer}>
                   <Image
                     source={{ uri: branch.image }}
