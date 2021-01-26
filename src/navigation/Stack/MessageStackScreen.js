@@ -1,6 +1,7 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { MessageScreen } from "../../pages";
+
+import { MessageScreen, ChatRoomScreen } from "../../pages";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,11 @@ const MessageStack = () => {
         name="Message"
         component={MessageScreen}
         options={{ title: "Message" }}
+      />
+      <Stack.Screen
+        name="ChatRoom"
+        component={ChatRoomScreen}
+        options={{ title: "Chat Room" }}
       />
     </Stack.Navigator>
   );
