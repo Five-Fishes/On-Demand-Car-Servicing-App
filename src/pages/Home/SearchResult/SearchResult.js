@@ -1,68 +1,36 @@
-import { Button, List, ListItem, Text } from "native-base";
+import { Button, List, ListItem, Spinner, Text } from "native-base";
 import React, { useState } from "react";
 import { Image, View, Alert } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { StackActions } from "@react-navigation/native";
+import { useQuery, gql } from "@apollo/client";
 
 import PageBackground from "../../../components/shared/PageBackground";
 import { BranchDetailsModal } from "../../../components/shared";
 import SearchResultStyle from "./SearchResultStyle";
+
+const BRANCHES_QUERY = gql`
+  query Branches($filter: String!) {
+    branches(filter: $filter) {
+      id
+      companyId
+      branchAddr
+      branchContactNo
+      hasDispatchService
+    }
+  }
+`;
 
 const SearchResult = ({ navigation, route }) => {
   const { filter, searchText } = route.params;
 
   const [selectedId, setSelectedId] = useState("");
   const [modalVisible, setModalVisible] = useState(false);
-  const [searchResult, setSearchResult] = useState([
-    {
-      id: 1,
-      by: "Provided by ABC star",
-      distance: "3.9km",
-      image:
-        "https://previews.123rf.com/images/mauro1969/mauro19691412/mauro1969141200036/34208622-the-car-workshop-for-repairs-and-setups.jpg",
-      name: "ABC Towing",
-    },
-    {
-      id: 2,
-      by: "Provided by ABC star",
-      distance: "3.9km",
-      image:
-        "https://previews.123rf.com/images/mauro1969/mauro19691412/mauro1969141200036/34208622-the-car-workshop-for-repairs-and-setups.jpg",
-      name: "ABC Towing",
-    },
-    {
-      id: 3,
-      by: "Provided by ABC star",
-      distance: "3.9km",
-      image:
-        "https://previews.123rf.com/images/mauro1969/mauro19691412/mauro1969141200036/34208622-the-car-workshop-for-repairs-and-setups.jpg",
-      name: "ABC Towing",
-    },
-    {
-      id: 4,
-      by: "Provided by ABC star",
-      distance: "3.9km",
-      image:
-        "https://previews.123rf.com/images/mauro1969/mauro19691412/mauro1969141200036/34208622-the-car-workshop-for-repairs-and-setups.jpg",
-      name: "ABC Towing",
-    },
-    {
-      id: 5,
-      by: "Provided by ABC star",
-      distance: "3.9km",
-      image:
-        "https://previews.123rf.com/images/mauro1969/mauro19691412/mauro1969141200036/34208622-the-car-workshop-for-repairs-and-setups.jpg",
-      name: "ABC Towing",
-    },
-    {
-      id: 6,
-      by: "Provided by ABC star",
-      distance: "3.9km",
-      image:
-        "https://previews.123rf.com/images/mauro1969/mauro19691412/mauro1969141200036/34208622-the-car-workshop-for-repairs-and-setups.jpg",
-      name: "ABC Towing",
-    },
-  ]);
+  const {
+    data: branchesData,
+    error: branchesError,
+    loading: branchesLoading,
+  } = useQuery(BRANCHES_QUERY, { variables: { filter: filter } });
 
   const bookNowBtnHandler = () => {
     Alert.alert(
@@ -85,8 +53,12 @@ const SearchResult = ({ navigation, route }) => {
     );
   };
 
+  if (branchesError) {
+    console.log("errorGettingBranches.message :>> ", branchesError.message);
+  }
+
   const branchItemHandler = (id) => {
-    setSelectedId(id.toString());
+    setSelectedId(id);
     setModalVisible(true);
   };
 
@@ -96,6 +68,7 @@ const SearchResult = ({ navigation, route }) => {
         id={selectedId}
         modalVisible={modalVisible}
         setModalVisible={setModalVisible}
+        serviceId={filter}
       />
       <ScrollView
         style={{ width: "100%" }}
@@ -105,58 +78,68 @@ const SearchResult = ({ navigation, route }) => {
           <Text style={SearchResultStyle.title}>{searchText}</Text>
         </View>
         <View style={SearchResultStyle.card}>
-          <List>
-            {searchResult.map((branch) => (
-              <ListItem
-                key={branch.id}
-                onPress={() => branchItemHandler(branch.id)}
-              >
-                <View style={SearchResultStyle.imageContainer}>
-                  <Image
-                    source={{ uri: branch.image }}
-                    style={SearchResultStyle.image}
-                  />
-                </View>
+          {branchesLoading ? (
+            <Spinner color="blue" />
+          ) : (
+            <List>
+              {branchesData &&
+                branchesData.branches.map((branch) => (
+                  <ListItem
+                    key={branch.id}
+                    onPress={() => branchItemHandler(branch.id)}
+                  >
+                    <View style={SearchResultStyle.imageContainer}>
+                      <Image
+                        source={{
+                          uri:
+                            "https://previews.123rf.com/images/mauro1969/mauro19691412/mauro1969141200036/34208622-the-car-workshop-for-repairs-and-setups.jpg",
+                        }}
+                        style={SearchResultStyle.image}
+                      />
+                    </View>
 
-                <View style={{ padding: 20, flex: 3 }}>
-                  <Text
-                    style={{
-                      textAlign: "left",
-                      alignSelf: "stretch",
-                      fontSize: 18,
-                    }}
-                  >
-                    {branch.name}
-                  </Text>
-                  <Text
-                    style={{
-                      textAlign: "left",
-                      alignSelf: "stretch",
-                      fontStyle: "italic",
-                      fontSize: 12,
-                    }}
-                  >
-                    {branch.by}
-                  </Text>
-                  <Text
-                    style={{
-                      textAlign: "left",
-                      alignSelf: "stretch",
-                      fontStyle: "italic",
-                      fontSize: 14,
-                    }}
-                  >
-                    {branch.distance}
-                  </Text>
-                  <Button rounded small success onPress={bookNowBtnHandler}>
-                    <Text style={{ fontSize: 12, fontWeight: "800" }}>
-                      Book Now
-                    </Text>
-                  </Button>
-                </View>
-              </ListItem>
-            ))}
-          </List>
+                    <View style={{ padding: 20, flex: 3 }}>
+                      <Text
+                        style={{
+                          textAlign: "left",
+                          alignSelf: "stretch",
+                          fontSize: 18,
+                        }}
+                      >
+                        {branch.branchAddr}
+                      </Text>
+                      <Text
+                        style={{
+                          textAlign: "left",
+                          alignSelf: "stretch",
+                          fontStyle: "italic",
+                          fontSize: 12,
+                        }}
+                      >
+                        {branch.branchContactNo}
+                      </Text>
+                      <Text
+                        style={{
+                          textAlign: "left",
+                          alignSelf: "stretch",
+                          fontStyle: "italic",
+                          fontSize: 14,
+                        }}
+                      >
+                        {branch.hasDispatchService
+                          ? "On call"
+                          : "Not available"}
+                      </Text>
+                      <Button rounded small success onPress={bookNowBtnHandler}>
+                        <Text style={{ fontSize: 12, fontWeight: "800" }}>
+                          Book Now
+                        </Text>
+                      </Button>
+                    </View>
+                  </ListItem>
+                ))}
+            </List>
+          )}
         </View>
       </ScrollView>
     </PageBackground>

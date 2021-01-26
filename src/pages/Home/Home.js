@@ -85,7 +85,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "600aadb65f88c01a8fc4fd94",
                     }),
                     searchText: "Car Towing",
                   });
@@ -100,7 +100,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102f314638da7a325727dc",
                     }),
                     searchText: "Diagnostic",
                   });
@@ -115,7 +115,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102bb51dabeb797760cc16",
                     }),
                     searchText: "Tyre Replacement",
                   });
@@ -130,7 +130,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102eef4638da7a325727da",
                     }),
                     searchText: "Battery Replacement",
                   });
@@ -145,7 +145,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102efe4638da7a325727db",
                     }),
                     searchText: "Repair",
                   });
@@ -159,9 +159,7 @@ const Home = ({ navigation }) => {
                 style={HomeStyle.imageContainer}
                 onPress={() => {
                   navigation.navigate("SearchResult", {
-                    filter: JSON.stringify({
-                      services: "car towing service ID",
-                    }),
+                    filter: JSON.stringify({}),
                     searchText: "Others",
                   });
                 }}

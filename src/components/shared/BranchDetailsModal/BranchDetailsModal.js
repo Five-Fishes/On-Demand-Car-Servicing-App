@@ -1,33 +1,72 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { Button, Text } from "native-base";
+import { Button, Spinner, Text, List, ListItem } from "native-base";
 import React from "react";
-import { useState } from "react";
-import { Modal, View, Alert, ImageBackground } from "react-native";
+import { Modal, View, Alert, ImageBackground, Linking } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import { gql, useQuery } from "@apollo/client";
 
 import PageBackground from "../PageBackground";
 import BranchDetailsModalStyle from "./BranchDetailsModalStyle";
+import AppointmentModal from "../AppointmentModal";
+import { useState } from "react";
 
-const BranchDetailsModal = ({ id, modalVisible, setModalVisible }) => {
-  const [branchDetails, setBranchDetails] = useState({
-    name: "ABC Towing",
-    company: "ABC Sdn Bhd",
-    price: "RM 98.00",
-    rating: "4.5",
-    distance: "13.2km",
-    details:
-      "This Service is top tiered towing by reducing risk of scratching car bodies. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Parturient montes nascetur ridiculus mus mauris vitae ultricies leo integer. Non enim praesent elementum facilisis leo vel fringilla est. Senectus et netus et malesuada fames ac turpis egestas. Sem nulla pharetra diam sit amet nisl suscipit adipiscing. Sollicitudin aliquam ultrices sagittis orci a scelerisque. Vitae auctor eu augue ut lectus.",
-    reviews: "ajdklsajldjajsdlkaj",
-  });
+const BRANCH_QUERY = gql`
+  query Branch($id: ID!) {
+    branch(id: $id) {
+      id
+      companyId
+      branchAddr
+      branchContactNo
+      hasDispatchService
+      businesshours {
+        mon {
+          open
+          break
+          close
+        }
+      }
+      services {
+        id
+        serviceNm
+        serviceType
+        isInHouseAvailable
+        isDispatchAvailable
+        estimatedServiceTime
+      }
+    }
+  }
+`;
+
+const BranchDetailsModal = ({
+  id,
+  modalVisible,
+  setModalVisible,
+  serviceId,
+}) => {
+  const {
+    data: branchData,
+    error: branchError,
+    loading: branchLoading,
+  } = useQuery(BRANCH_QUERY, { variables: { id: id } });
+  const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+
+  if (branchError) {
+    const message = branchError.message;
+    console.log("message :>> ", message);
+  }
+
+  const handlePhoneNoPressed = () => {
+    if (branchData) Linking.openURL(`tel:${branchData.branch.branchContactNo}`);
+  };
+
   return (
-    <Modal
-      animationType="slide"
-      transparent={true}
-      visible={modalVisible}
-      onRequestClose={() => {
-        Alert.Alertalert("Ayoo modal closed");
-      }}
-    >
+    <Modal animationType="slide" transparent={true} visible={modalVisible}>
+      <AppointmentModal
+        modalVisible={showAppointmentModal}
+        setModalVisible={setShowAppointmentModal}
+        serviceID={serviceId}
+        branchID={id}
+      />
       <PageBackground>
         <ScrollView style={{ width: "100%" }}>
           <View style={BranchDetailsModalStyle.appbar}>
@@ -53,83 +92,176 @@ const BranchDetailsModal = ({ id, modalVisible, setModalVisible }) => {
                   ‹
                 </Text>
                 <Text style={BranchDetailsModalStyle.title}>
-                  {branchDetails.name}
+                  {branchData && branchData.branch.branchAddr}
                 </Text>
               </LinearGradient>
             </ImageBackground>
           </View>
           <View style={BranchDetailsModalStyle.card}>
-            <View style={{ flexDirection: "row" }}>
-              <View style={{ flex: 3, justifyContent: "flex-end" }}>
-                <Text style={{ fontSize: 30, fontWeight: "bold" }}>
-                  {branchDetails.name}
-                </Text>
-                <Text style={{ fontStyle: "italic", fontSize: 16 }}>
-                  {branchDetails.company}
-                </Text>
-                <Text style={{ fontStyle: "italic", fontSize: 16 }}>
-                  {`${branchDetails.distance} away`}
-                </Text>
-              </View>
-              <View style={{ flex: 2, justifyContent: "space-between" }}>
-                <Text
+            {branchLoading ? (
+              <Spinner color="blue" />
+            ) : (
+              <>
+                <View style={{ flexDirection: "row" }}>
+                  <View style={{ flex: 3, justifyContent: "flex-end" }}>
+                    <Text
+                      style={{ fontSize: 30, fontWeight: "bold" }}
+                      numberOfLines={1}
+                      onPress={handlePhoneNoPressed}
+                    >
+                      {branchData && branchData.branch.branchContactNo}
+                    </Text>
+                    <Text style={{ fontStyle: "italic", fontSize: 16 }}>
+                      {branchData &&
+                        `Opens at ${branchData.branch.businesshours.mon.open}`}
+                    </Text>
+                    <Text style={{ fontStyle: "italic", fontSize: 16 }}>
+                      {branchData &&
+                        `Closes at ${branchData.branch.businesshours.mon.close}`}
+                    </Text>
+                  </View>
+                  <View style={{ flex: 2, justifyContent: "space-between" }}>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        fontStyle: "italic",
+                        alignSelf: "flex-end",
+                        textAlign: "right",
+                      }}
+                    >
+                      Dispatch
+                    </Text>
+                    {branchData && branchData.branch.hasDispatchService ? (
+                      <Text
+                        style={{
+                          padding: 3,
+                          fontSize: 14,
+                          margin: 1,
+                          alignSelf: "flex-end",
+                          color: "#FFFFFF",
+                          textAlign: "right",
+                          backgroundColor: "#4F892B",
+                        }}
+                      >
+                        Available
+                      </Text>
+                    ) : (
+                      <Text
+                        style={{
+                          padding: 3,
+                          fontSize: 14,
+                          margin: 1,
+                          alignSelf: "flex-end",
+                          color: "#BF3941",
+                          textAlign: "right",
+                          backgroundColor: "#4F892B",
+                        }}
+                      >
+                        Un-available
+                      </Text>
+                    )}
+                    <Text
+                      style={{
+                        padding: 3,
+                        fontSize: 14,
+                        margin: 1,
+                        alignSelf: "flex-end",
+                        color: "#FFFFFF",
+                        textAlign: "right",
+                        backgroundColor: "#EFB92E",
+                      }}
+                    >
+                      Add to favourute
+                    </Text>
+                  </View>
+                </View>
+                <View style={BranchDetailsModalStyle.section}>
+                  <Text style={BranchDetailsModalStyle.sectionTitle}>
+                    Other Services
+                  </Text>
+                  <List>
+                    {branchData &&
+                      branchData.branch.services.map((service) => (
+                        <ListItem key={service.id}>
+                          <View style={{ alignContent: "space-between" }}>
+                            <Text
+                              style={{
+                                fontSize: 12,
+                                marginBottom: 6,
+                                textAlign: "left",
+                                alignSelf: "stretch",
+                              }}
+                            >{`• This branch provides ${service.serviceNm} service`}</Text>
+                            <Text
+                              style={{
+                                fontSize: 12,
+                                marginBottom: 6,
+                                textAlign: "left",
+                                alignSelf: "stretch",
+                              }}
+                            >
+                              {`• In house service: ${
+                                service.isInHouseAvailable
+                                  ? "available"
+                                  : "unavailable"
+                              }`}
+                            </Text>
+                            <Text
+                              style={{
+                                fontSize: 12,
+                                marginBottom: 6,
+                                textAlign: "left",
+                                alignSelf: "stretch",
+                              }}
+                            >
+                              {service.isDispatchAvailable
+                                ? "• Service is available whenever you are! We will bring the service to you as long as you are within the supported area."
+                                : "• This service only has house support"}
+                            </Text>
+                            <Text
+                              style={{
+                                fontSize: 12,
+                                marginBottom: 6,
+                                textAlign: "left",
+                                alignSelf: "stretch",
+                              }}
+                            >{`• Estimated service time: ${service.estimatedServiceTime} hour`}</Text>
+                          </View>
+                        </ListItem>
+                      ))}
+                  </List>
+                </View>
+                <View
                   style={{
-                    fontSize: 12,
-                    fontStyle: "italic",
-                    alignSelf: "flex-end",
-                    textAlign: "right",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    padding: 20,
                   }}
                 >
-                  estimated price
-                </Text>
-                <Text
-                  style={{
-                    padding: 3,
-                    fontSize: 14,
-                    margin: 1,
-                    alignSelf: "flex-end",
-                    color: "#FFFFFF",
-                    textAlign: "right",
-                    backgroundColor: "#4F892B",
-                  }}
-                >
-                  {branchDetails.price}
-                </Text>
-                <Text
-                  style={{
-                    padding: 3,
-                    fontSize: 14,
-                    margin: 1,
-                    alignSelf: "flex-end",
-                    color: "#FFFFFF",
-                    textAlign: "right",
-                    backgroundColor: "#EFB92E",
-                  }}
-                >
-                  Add to favourute
-                </Text>
-              </View>
-            </View>
-            <View style={BranchDetailsModalStyle.section}>
-              <Text style={BranchDetailsModalStyle.sectionTitle}>
-                Service Details
-              </Text>
-              <Text>{branchDetails.details}</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "space-between",
-                padding: 20,
-              }}
-            >
-              <Button rounded small primary>
-                <Text>Book Now</Text>
-              </Button>
-              <Button rounded small success>
-                <Text>Appointment</Text>
-              </Button>
-            </View>
+                  <Button
+                    rounded
+                    small
+                    primary
+                    onPress={() => {
+                      if (serviceId) {
+                        const currentServiceId = JSON.parse(serviceId).services;
+                        console.log("currentServiceId :>> ", currentServiceId);
+                      }
+                    }}
+                  >
+                    <Text>Book Now</Text>
+                  </Button>
+                  <Button
+                    rounded
+                    small
+                    success
+                    onPress={() => setShowAppointmentModal(true)}
+                  >
+                    <Text>Appointment</Text>
+                  </Button>
+                </View>
+              </>
+            )}
           </View>
         </ScrollView>
       </PageBackground>
