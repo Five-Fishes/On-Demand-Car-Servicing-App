@@ -3,14 +3,14 @@ import {
   View,
   ScrollView,
   SafeAreaView,
-  Dimensions,
   Text,
   TouchableOpacity,
 } from "react-native";
 import * as React from "react";
-import { Background } from "../../components/shared";
+import { Background, BranchDetailsModal } from "../../components/shared";
 import HomeStyle from "./HomeStyle";
-import { Header, Item, Input, Icon, Button, Content } from "native-base";
+import { Item, Input, Icon, Button } from "native-base";
+import { useState } from "react";
 
 const CarTowing = require("../../staticResources/images/CarTowing.png");
 const Diagnostic = require("../../staticResources/images/Diagnostic.png");
@@ -20,8 +20,17 @@ const Repair = require("../../staticResources/images/Repair.png");
 const Others = require("../../staticResources/images/Others.png");
 
 const Home = ({ navigation }) => {
+  const [isBranchVisible, setIsBranchVisible] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState(
+    "12317239178932717jkahsdjk"
+  );
   return (
     <Background>
+      <BranchDetailsModal
+        modalVisible={isBranchVisible}
+        setModalVisible={setIsBranchVisible}
+        id={selectedBranch}
+      />
       <View style={{ flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View
@@ -34,15 +43,13 @@ const Home = ({ navigation }) => {
               maxHeight: 125,
             }}
           >
-            <Content>
-              <Item rounded style={HomeStyle.searchbar}>
-                <Input
-                  placeholder="Search Services"
-                  textAlign="center"
-                  style={{ fontSize: 14 }}
-                />
-              </Item>
-            </Content>
+            <Item rounded style={HomeStyle.searchbar}>
+              <Input
+                placeholder="Search Services"
+                textAlign="center"
+                style={{ fontSize: 14 }}
+              />
+            </Item>
             <Button
               transparent
               style={{ alignSelf: "center" }}
@@ -177,23 +184,68 @@ const Home = ({ navigation }) => {
                 <View style={{ width: 20 }} />
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLtEz6QEHhPnU8xOQoJspDL2U9f0UBh8LJLg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqvkZdHe3SvCV9eq_ciCv843r4ObubXkA_Tw&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAVvpAnjJyR-NNPYKut8xuBiXAcLiBGR93Gg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
               </ScrollView>
             </SafeAreaView>
 
@@ -208,23 +260,68 @@ const Home = ({ navigation }) => {
                 <View style={{ width: 20 }} />
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => setIsBranchVisible(true)}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
               </ScrollView>
             </SafeAreaView>
           </View>
