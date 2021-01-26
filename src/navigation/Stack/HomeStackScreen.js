@@ -1,6 +1,6 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-import { HomeScreen } from "../../pages";
+import { HomeScreen, SearchResultScreen } from "../../pages";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +26,11 @@ const HomeStack = () => {
         name="Home"
         component={HomeScreen}
         options={{ title: "Home" }}
+      />
+      <Stack.Screen
+        name="SearchResult"
+        component={SearchResultScreen}
+        options={{ title: "Search Result" }}
       />
     </Stack.Navigator>
   );

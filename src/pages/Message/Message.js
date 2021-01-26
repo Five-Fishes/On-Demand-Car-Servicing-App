@@ -1,4 +1,4 @@
-import { Alert, Text, View } from "react-native";
+import { Text, View } from "react-native";
 import React, { useState } from "react";
 import { ScrollView } from "react-native-gesture-handler";
 import { List, ListItem } from "native-base";
@@ -72,7 +72,12 @@ const Message = ({ navigation }) => {
       <View style={{ minHeight: 600 }}>
         <List>
           {conversations.map((conversation, index) => (
-            <ListItem key={index} onPress={() => {}}>
+            <ListItem
+              key={index}
+              onPress={() => {
+                navigation.navigate("ChatRoom");
+              }}
+            >
               <View style={{ flexDirection: "row" }}>
                 <View
                   style={{

@@ -53,12 +53,14 @@ const App = () => {
                 return focused ? (
                   <Image
                     source={require("../src/staticResources/icons/24/basic/home.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 ) : (
                   <Image
                     source={require("../src/staticResources/icons/24-2/basic/home.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 );
               },
@@ -74,12 +76,14 @@ const App = () => {
                 return focused ? (
                   <Image
                     source={require("../src/staticResources/icons/favourite-focused.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 ) : (
                   <Image
                     source={require("../src/staticResources/icons/favourite.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 );
               },
@@ -95,12 +99,14 @@ const App = () => {
                 return focused ? (
                   <Image
                     source={require("../src/staticResources/icons/appointment-focused.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 ) : (
                   <Image
                     source={require("../src/staticResources/icons/appointment.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 );
               },
@@ -116,12 +122,14 @@ const App = () => {
                 return focused ? (
                   <Image
                     source={require("../src/staticResources/icons/message-focused.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 ) : (
                   <Image
                     source={require("../src/staticResources/icons/message.png")}
-                    style={{ height: 30, width: 30 }}
+                    style={{ height: 28, width: 30 }}
+                    resizeMode="stretch"
                   />
                 );
               },
@@ -144,6 +152,7 @@ const App = () => {
                       borderColor: activeColor,
                       borderRadius: 30,
                     }}
+                    resizeMode="stretch"
                   />
                 ) : (
                   <Image
@@ -155,6 +164,7 @@ const App = () => {
                       borderColor: inactiveColor,
                       borderRadius: 30,
                     }}
+                    resizeMode="stretch"
                   />
                 );
               },

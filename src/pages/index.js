@@ -7,6 +7,8 @@ import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SignUpExtra from "./SignUpExtra";
 import Message from "./Message";
+import ChatRoom from "./Message/ChatRoom";
+import SearchResult from "./Home/SearchResult";
 
 export { Appointment as AppointmentScreen };
 export { Favourite as FavouriteScreen };
@@ -17,3 +19,5 @@ export { SignIn as SignInScreen };
 export { SignUp as SignUpScreen };
 export { SignUpExtra as SignUpExtraScreen };
 export { Message as MessageScreen };
+export { ChatRoom as ChatRoomScreen };
+export { SearchResult as SearchResultScreen };
