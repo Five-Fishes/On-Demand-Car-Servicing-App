@@ -6,6 +6,7 @@ import Settings from "./Settings";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import SignUpExtra from "./SignUpExtra";
+import Message from "./Message";
 
 export { Appointment as AppointmentScreen };
 export { Favourite as FavouriteScreen };
@@ -15,3 +16,4 @@ export { Settings as SettingsScreen };
 export { SignIn as SignInScreen };
 export { SignUp as SignUpScreen };
 export { SignUpExtra as SignUpExtraScreen };
+export { Message as MessageScreen };
