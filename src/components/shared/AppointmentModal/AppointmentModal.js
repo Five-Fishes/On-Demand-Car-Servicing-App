@@ -107,6 +107,7 @@ const AppointmentModal = ({
   }
 
   if (createAppointmentError) {
+    alert(createAppointmentError.message);
     console.log("createAppointmentError :>> ", createAppointmentError);
   }
 
