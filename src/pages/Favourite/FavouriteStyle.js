@@ -25,6 +25,8 @@ const FavouriteStyle = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
+    paddingVertical: 40,
+    paddingHorizontal: 20,
     borderTopLeftRadius: 40,
     borderTopRightRadius: 40,
     backgroundColor: "#FFFFFF",
