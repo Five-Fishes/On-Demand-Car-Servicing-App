@@ -5,7 +5,7 @@ import { useMutation, gql } from "@apollo/client";
 
 import SignInStyle from "./SignInStyle";
 import Background from "../../components/shared/PageBackground/PageBackground";
-import { signIn } from "../../utils/AuthUtils";
+import { signIn, setUserId } from "../../utils/AuthUtils";
 
 const LOG_IN = gql`
   mutation Login($email: String!, $password: String!) {
@@ -42,6 +42,7 @@ const SignIn = ({ navigation, setIsAuthenticated }) => {
   if (loginData) {
     if (loginData.login.token.length > 0) {
       signIn(loginData.login.token);
+      setUserId(loginData.login.id);
       setIsAuthenticated(true);
     } else {
       alert("login failed");
