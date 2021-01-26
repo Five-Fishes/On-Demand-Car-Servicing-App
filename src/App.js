@@ -1,8 +1,12 @@
 import * as React from "react";
+import { useState, useEffect } from "react";
+import { Image, StatusBar } from "react-native";
+import * as Font from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { SignInScreen, SignUpScreen, SignUpExtraScreen } from "./pages";
+import { ApolloProvider } from "@apollo/client";
+
 import {
   HomeStack,
   FavouriteStack,
@@ -10,17 +14,14 @@ import {
   MessageStack,
   ProfileStack,
 } from "./navigation/index.js";
-import * as Font from "expo-font";
-import { useState, useEffect } from "react";
-import { Image, StatusBar } from "react-native";
+import { SignInScreen, SignUpScreen, SignUpExtraScreen } from "./pages";
+import { Client } from "./graphql";
 
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 const activeColor = "#2A5BA8";
 const inactiveColor = "#867A7A";
-
-const authenticated = false;
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -214,4 +215,12 @@ const App = () => {
   );
 };
 
-export default App;
+const WrappedApp = () => {
+  return (
+    <ApolloProvider client={Client}>
+      <App></App>
+    </ApolloProvider>
+  );
+};
+
+export default WrappedApp;
