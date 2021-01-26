@@ -1,7 +1,6 @@
 import * as React from "react";
 import { createStackNavigator } from "@react-navigation/stack";
-// TODO: Uncomment after MessageScreen impl
-// import { MessageScreen } from "../../pages";
+import { MessageScreen } from "../../pages";
 
 const Stack = createStackNavigator();
 
