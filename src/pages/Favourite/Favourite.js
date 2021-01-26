@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { View, Text, ScrollView, Dimensions } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import Background from "../../components/shared/PageBackground";
@@ -6,6 +7,8 @@ import FavouriteList from "./FavouriteList";
 import FavouriteStyle from "./FavouriteStyle";
 
 const Favourite = () => {
+  const [isServices, setIsServices] = useState(true);
+
   return (
     <Background>
       <ScrollView
@@ -36,20 +39,42 @@ const Favourite = () => {
                 marginVertical: 30,
               }}
             >
-              <TouchableOpacity style={FavouriteStyle.button}>
+              <TouchableOpacity
+                style={FavouriteStyle.button}
+                onPress={() => setIsServices(true)}
+              >
                 <Text style={FavouriteStyle.buttonText}>Services</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={FavouriteStyle.button}>
+              <TouchableOpacity
+                style={FavouriteStyle.button}
+                onPress={() => setIsServices(false)}
+              >
                 <Text style={FavouriteStyle.buttonText}>Workshop</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={FavouriteStyle.button}>
-                <Text style={FavouriteStyle.buttonText}>anything</Text>
+              <TouchableOpacity
+                style={{
+                  padding: 7,
+                  height: 37,
+                  backgroundColor: "transparent",
+                }}
+              >
+                <Text
+                  style={{
+                    textAlign: "center",
+                    color: "transparent",
+                    fontSize: 16,
+                    fontStyle: "normal",
+                    fontWeight: "600",
+                  }}
+                >
+                  apperent
+                </Text>
               </TouchableOpacity>
             </View>
 
-            <FavouriteList />
+            <FavouriteList isServices={isServices} />
           </View>
         </View>
       </ScrollView>
