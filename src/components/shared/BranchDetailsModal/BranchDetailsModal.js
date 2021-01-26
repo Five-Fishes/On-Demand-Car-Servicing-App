@@ -84,6 +84,7 @@ const BranchDetailsModal = ({
                     fontSize: 60,
                     left: 20,
                     top: 20,
+                    width: 30,
                     fontWeight: "600",
                     color: "#FFFFFF",
                     position: "absolute",
@@ -105,7 +106,7 @@ const BranchDetailsModal = ({
                 <View style={{ flexDirection: "row" }}>
                   <View style={{ flex: 3, justifyContent: "flex-end" }}>
                     <Text
-                      style={{ fontSize: 30, fontWeight: "bold" }}
+                      style={{ fontSize: 25, fontWeight: "bold" }}
                       numberOfLines={1}
                       onPress={handlePhoneNoPressed}
                     >
