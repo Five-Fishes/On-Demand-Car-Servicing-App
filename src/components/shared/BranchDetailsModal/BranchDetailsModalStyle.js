@@ -6,7 +6,7 @@ const BranchDetailsModalStyle = StyleSheet.create({
   },
   title: {
     fontSize: 30,
-    margin: 40,
+    margin: 50,
     height: 240,
     color: "#FFFFFF",
     fontWeight: "bold",

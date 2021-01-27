@@ -85,6 +85,12 @@ const HomeStyle = StyleSheet.create({
     shadowOpacity: 0.25,
   },
 
+  recommendedImage: {
+    width: 115,
+    height: 139,
+    borderRadius: 16,
+  },
+
   title: {
     color: "#686060",
     paddingLeft: 32,

@@ -23,8 +23,18 @@ const authMiddleware = new ApolloLink(async (operation, forward) => {
 
   return forward(operation);
 });
-
+const defaultOptions = {
+  watchQuery: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "ignore",
+  },
+  query: {
+    fetchPolicy: "no-cache",
+    errorPolicy: "all",
+  },
+};
 export default new ApolloClient({
   link: concat(authMiddleware, httpLink),
   cache: new InMemoryCache(),
+  defaultOptions: defaultOptions,
 });

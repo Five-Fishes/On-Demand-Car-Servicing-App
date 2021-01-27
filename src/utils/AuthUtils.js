@@ -40,7 +40,7 @@ export const getUserInfo = async () => {
   return { userId, employeeType, employmentBranch };
 };
 
-const setUserId = (userId) => {
+export const setUserId = (userId) => {
   return AsyncStorage.setItem(USER_ID, userId);
 };
 const setEmployeeType = (employmeeType) => {
@@ -48,4 +48,8 @@ const setEmployeeType = (employmeeType) => {
 };
 const setEmploymentBranch = (branch) => {
   return AsyncStorage.setItem(EMPLOYMENT_BRANCH, branch);
+};
+
+export const getUserId = async () => {
+  return await AsyncStorage.getItem(USER_ID);
 };

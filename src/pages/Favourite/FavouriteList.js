@@ -1,9 +1,54 @@
 import React from "react";
 import { useState } from "react";
 import { Text, View } from "react-native";
-import FavouriteStyle from "./FavouriteStyle";
+import { useQuery, gql } from "@apollo/client";
+import { useEffect } from "react";
 
-const FavouriteList = () => {
+import FavouriteStyle from "./FavouriteStyle";
+import { getUserId } from "../../utils/AuthUtils";
+import { BranchDetailsModal } from "../../components/shared";
+
+const GET_FAVOURITELIST = gql`
+  query User($id: String!) {
+    user(id: $id) {
+      favouriteBranch {
+        favouriteBranchID
+      }
+    }
+  }
+`;
+
+const FavouriteList = ({ isServices }) => {
+  const [userId, setuserId] = useState("");
+  const [viewBranch, setViewBranch] = useState(false);
+
+  const { error: branchesIdError, data: BranchesId } = useQuery(
+    GET_FAVOURITELIST,
+    {
+      variables: { id: userId },
+      pollInterval: 1000,
+    }
+  );
+
+  useEffect(() => {
+    (async () => {
+      const Id = await getUserId();
+      console.log("Id :>> ", Id);
+      setuserId(Id);
+    })();
+  });
+
+  if (userId) {
+    console.log("Yooo");
+  }
+  if (branchesIdError) {
+    console.log("branchesIdError :>> ", branchesIdError);
+  }
+
+  if (BranchesId) {
+    console.log("BranchesId :>> ", BranchesId);
+  }
+
   const [lst, setLst] = useState([
     {
       ServiceID: 10001,
@@ -29,60 +74,21 @@ const FavouriteList = () => {
       EstimatedServiceTime: "4 hours",
       ServiceInHistoryOn: "09-12-2020",
     },
-    // {
-    //   ServiceID: 10004,
-    //   ServiceNm: "Annual Service - Full Set",
-    //   IsDispatchAvailable: "No",
-    //   IsInHouseAvailable: "Yes",
-    //   EstimatedServiceTime: "4 hours",
-    //   ServiceInHistoryOn: "09-12-2020",
-    // },
-    // {
-    //   ServiceID: 10005,
-    //   ServiceNm: "Annual Service - Full Set",
-    //   IsDispatchAvailable: "No",
-    //   IsInHouseAvailable: "Yes",
-    //   EstimatedServiceTime: "4 hours",
-    //   ServiceInHistoryOn: "09-12-2020",
-    // },
-    // {
-    //   ServiceID: 10006,
-    //   ServiceNm: "Annual Service - Full Set",
-    //   IsDispatchAvailable: "No",
-    //   IsInHouseAvailable: "Yes",
-    //   EstimatedServiceTime: "4 hours",
-    //   ServiceInHistoryOn: "09-12-2020",
-    // },
-    // {
-    //   ServiceID: 10007,
-    //   ServiceNm: "Annual Service - Full Set",
-    //   IsDispatchAvailable: "No",
-    //   IsInHouseAvailable: "Yes",
-    //   EstimatedServiceTime: "4 hours",
-    //   ServiceInHistoryOn: "09-12-2020",
-    // },
-    // {
-    //   ServiceID: 10008,
-    //   ServiceNm: "Annual Service - Full Set",
-    //   IsDispatchAvailable: "No",
-    //   IsInHouseAvailable: "Yes",
-    //   EstimatedServiceTime: "4 hours",
-    //   ServiceInHistoryOn: "09-12-2020",
-    // },
-    // {
-    //   ServiceID: 10009,
-    //   ServiceNm: "Annual Service - Full Set",
-    //   IsDispatchAvailable: "No",
-    //   IsInHouseAvailable: "Yes",
-    //   EstimatedServiceTime: "4 hours",
-    //   ServiceInHistoryOn: "09-12-2020",
-    // },
   ]);
+
   return (
     <View>
+      <BranchDetailsModal
+        modalVisible={viewBranch}
+        setModalVisible={setViewBranch}
+      />
       {lst.map((item) => (
-        <Text key={item.ServiceID} style={FavouriteStyle.title}>
-          Appointment {item.ServiceID} {"\n"}
+        <Text
+          key={item.ServiceID}
+          style={FavouriteStyle.title}
+          onPress={() => setViewBranch(true)}
+        >
+          Service {item.ServiceID} {"\n"}
           <Text style={FavouriteStyle.content}>
             {item.ServiceNm} on {item.ServiceInHistoryOn} {"\n"}
             in estimated {item.EstimatedServiceTime} of time. {"\n"}

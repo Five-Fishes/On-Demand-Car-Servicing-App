@@ -3,14 +3,14 @@ import {
   View,
   ScrollView,
   SafeAreaView,
-  Dimensions,
   Text,
   TouchableOpacity,
 } from "react-native";
 import * as React from "react";
-import { Background } from "../../components/shared";
+import { Background, BranchDetailsModal } from "../../components/shared";
 import HomeStyle from "./HomeStyle";
-import { Header, Item, Input, Icon, Button, Content } from "native-base";
+import { Item, Input, Icon, Button } from "native-base";
+import { useState } from "react";
 
 const CarTowing = require("../../staticResources/images/CarTowing.png");
 const Diagnostic = require("../../staticResources/images/Diagnostic.png");
@@ -20,8 +20,27 @@ const Repair = require("../../staticResources/images/Repair.png");
 const Others = require("../../staticResources/images/Others.png");
 
 const Home = ({ navigation }) => {
+  const [isBranchVisible, setIsBranchVisible] = useState(false);
+  const [selectedBranch, setSelectedBranch] = useState(
+    "12317239178932717jkahsdjk"
+  );
+  const [selectedService, setSelectedService] = useState(
+    "12317239178932717jkahsdjk"
+  );
+  const [searchText, setSearchText] = useState("");
+
+  const handleSearchTextChange = (txt) => {
+    setSearchText(txt);
+  };
+
   return (
     <Background>
+      <BranchDetailsModal
+        modalVisible={isBranchVisible}
+        setModalVisible={setIsBranchVisible}
+        id={selectedBranch}
+        serviceId={selectedService}
+      />
       <View style={{ flex: 1 }}>
         <ScrollView showsVerticalScrollIndicator={false}>
           <View
@@ -34,23 +53,28 @@ const Home = ({ navigation }) => {
               maxHeight: 125,
             }}
           >
-            <Content>
-              <Item rounded style={HomeStyle.searchbar}>
-                <Input
-                  placeholder="Search Services"
-                  textAlign="center"
-                  style={{ fontSize: 14 }}
-                />
-              </Item>
-            </Content>
+            <Item rounded style={HomeStyle.searchbar}>
+              <Input
+                placeholder="Search Services"
+                value={searchText}
+                onChangeText={handleSearchTextChange}
+                textAlign="center"
+                style={{ fontSize: 14 }}
+              />
+            </Item>
             <Button
               transparent
               style={{ alignSelf: "center" }}
               small
               onPress={() => {
                 navigation.navigate("SearchResult", {
-                  filter: JSON.stringify({ branchNm: "ABC Towing" }),
-                  searchText: "ABC Towing",
+                  filter: JSON.stringify(
+                    searchText.trim().length === 0
+                      ? {}
+                      : { branchAddr: searchText }
+                  ),
+                  searchText:
+                    searchText.trim().length === 0 ? "All" : searchText,
                 });
               }}
             >
@@ -78,7 +102,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "600aadb65f88c01a8fc4fd94",
                     }),
                     searchText: "Car Towing",
                   });
@@ -93,7 +117,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102f314638da7a325727dc",
                     }),
                     searchText: "Diagnostic",
                   });
@@ -108,7 +132,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102bb51dabeb797760cc16",
                     }),
                     searchText: "Tyre Replacement",
                   });
@@ -123,7 +147,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102eef4638da7a325727da",
                     }),
                     searchText: "Battery Replacement",
                   });
@@ -138,7 +162,7 @@ const Home = ({ navigation }) => {
                 onPress={() => {
                   navigation.navigate("SearchResult", {
                     filter: JSON.stringify({
-                      services: "car towing service ID",
+                      services: "60102efe4638da7a325727db",
                     }),
                     searchText: "Repair",
                   });
@@ -152,9 +176,7 @@ const Home = ({ navigation }) => {
                 style={HomeStyle.imageContainer}
                 onPress={() => {
                   navigation.navigate("SearchResult", {
-                    filter: JSON.stringify({
-                      services: "car towing service ID",
-                    }),
+                    filter: JSON.stringify({}),
                     searchText: "Others",
                   });
                 }}
@@ -177,23 +199,98 @@ const Home = ({ navigation }) => {
                 <View style={{ width: 20 }} />
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLtEz6QEHhPnU8xOQoJspDL2U9f0UBh8LJLg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqvkZdHe3SvCV9eq_ciCv843r4ObubXkA_Tw&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRAVvpAnjJyR-NNPYKut8xuBiXAcLiBGR93Gg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
               </ScrollView>
             </SafeAreaView>
 
@@ -208,23 +305,98 @@ const Home = ({ navigation }) => {
                 <View style={{ width: 20 }} />
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
 
                 <TouchableOpacity
                   style={HomeStyle.recommendedContainer}
-                ></TouchableOpacity>
+                  onPress={() => {
+                    setIsBranchVisible(true);
+                    setSelectedBranch("600c04ca83b24376b31b1e14");
+                    setSelectedService(
+                      JSON.stringify({ services: "600aadb65f88c01a8fc4fd94" })
+                    );
+                  }}
+                >
+                  <Image
+                    source={{
+                      uri:
+                        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSqMFLNlhbkuwX-_g3U_EGSk3rp75Xj8pA2Vg&usqp=CAU",
+                    }}
+                    style={HomeStyle.recommendedImage}
+                  ></Image>
+                </TouchableOpacity>
               </ScrollView>
             </SafeAreaView>
           </View>
