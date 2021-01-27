@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Modal, View } from "react-native";
+import { Alert, Modal, View } from "react-native";
 import { useLazyQuery, gql, useMutation } from "@apollo/client";
 
 import AppointmentModalStyle from "./AppointmentModalStyle";
@@ -108,7 +108,6 @@ const AppointmentModal = ({
 
   if (createAppointmentError) {
     alert(createAppointmentError.message);
-    console.log("createAppointmentError :>> ", createAppointmentError);
   }
 
   const handleRadioValueChange = (value) => {

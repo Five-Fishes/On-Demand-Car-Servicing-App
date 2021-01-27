@@ -49,6 +49,7 @@ const BranchDetailsModal = ({
     loading: branchLoading,
   } = useQuery(BRANCH_QUERY, { variables: { id: id } });
   const [showAppointmentModal, setShowAppointmentModal] = useState(false);
+  const [currentService, setCurrentService] = useState(null);
 
   if (branchError) {
     const message = branchError.message;
@@ -58,6 +59,15 @@ const BranchDetailsModal = ({
   const handlePhoneNoPressed = () => {
     if (branchData) Linking.openURL(`tel:${branchData.branch.branchContactNo}`);
   };
+
+  if (branchData) {
+    if (currentService === null) {
+      const currService = branchData.branch.services.find(
+        (service) => service.id === JSON.parse(serviceId).services
+      );
+      setCurrentService(currService);
+    }
+  }
 
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
@@ -106,7 +116,12 @@ const BranchDetailsModal = ({
                 <View style={{ flexDirection: "row" }}>
                   <View style={{ flex: 3, justifyContent: "flex-end" }}>
                     <Text
-                      style={{ fontSize: 25, fontWeight: "bold" }}
+                      style={{
+                        fontSize: 20,
+                        fontWeight: "bold",
+                        textDecorationLine: "underline",
+                        color: "blue",
+                      }}
                       numberOfLines={1}
                       onPress={handlePhoneNoPressed}
                     >
@@ -178,7 +193,59 @@ const BranchDetailsModal = ({
                 </View>
                 <View style={BranchDetailsModalStyle.section}>
                   <Text style={BranchDetailsModalStyle.sectionTitle}>
-                    Other Services
+                    Current Services
+                  </Text>
+                  <View
+                    style={{
+                      alignContent: "space-between",
+                      marginVertical: 10,
+                    }}
+                  >
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        marginBottom: 6,
+                        textAlign: "left",
+                        alignSelf: "stretch",
+                      }}
+                    >{`• This branch provides ${currentService?.serviceNm} service`}</Text>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        marginBottom: 6,
+                        textAlign: "left",
+                        alignSelf: "stretch",
+                      }}
+                    >
+                      {`• In house service: ${
+                        currentService?.isInHouseAvailable
+                          ? "available"
+                          : "unavailable"
+                      }`}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        marginBottom: 6,
+                        textAlign: "left",
+                        alignSelf: "stretch",
+                      }}
+                    >
+                      {currentService?.isDispatchAvailable
+                        ? "• Service is available whenever you are! We will bring the service to you as long as you are within the supported area."
+                        : "• This service only has house support"}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 12,
+                        marginBottom: 6,
+                        textAlign: "left",
+                        alignSelf: "stretch",
+                      }}
+                    >{`• Estimated service time: ${currentService?.estimatedServiceTime} hour`}</Text>
+                  </View>
+                  <Text style={BranchDetailsModalStyle.sectionTitle}>
+                    Other services available in this workshop
                   </Text>
                   <List>
                     {branchData &&
